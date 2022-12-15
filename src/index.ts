@@ -1,1 +1,8 @@
-const a: string = '1';
+import TypeCheck from './typecheck';
+
+const UtilHelper = {
+  TypeCheck,
+  ...TypeCheck,
+};
+
+export default UtilHelper;
