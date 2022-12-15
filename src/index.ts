@@ -1,8 +1,8 @@
 import TypeCheck from './typecheck';
 
-const UtilHelper = {
+const UtilHelper = Object.freeze({
   TypeCheck,
   ...TypeCheck,
-};
+});
 
 export default UtilHelper;
