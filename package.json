@@ -6,7 +6,7 @@
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "test": "jest",
+    "test": "jest --watchAll",
     "publish:npm": "rimraf dist &&  babel src -d dist --extensions \".ts\"",
     "publish:type": "tsc --declaration --allowJs --emitDeclarationOnly --outDir dist"
   },
