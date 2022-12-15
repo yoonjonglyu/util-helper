@@ -2,9 +2,13 @@
   "name": "util-helper",
   "version": "1.0.0",
   "description": "js,ts,utll,helper",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "publish:npm": "rimraf dist &&  babel src -d dist --extensions \".ts\"",
+    "publish:type": "tsc --declaration --allowJs --emitDeclarationOnly --outDir dist"
   },
   "repository": {
     "type": "git",
