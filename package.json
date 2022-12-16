@@ -1,5 +1,5 @@
 {
-  "name": "util-helper",
+  "name": "isa-util",
   "version": "1.0.0",
   "description": "js,ts,utll,helper",
   "main": "dist/index.js",
