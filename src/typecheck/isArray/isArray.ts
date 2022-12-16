@@ -1,4 +1,4 @@
-function isArray(arg: any) {
+function isArray(arg: any): boolean {
   if (Array.isArray !== undefined) {
     return Array.isArray(arg);
   } else {

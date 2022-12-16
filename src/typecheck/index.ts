@@ -1,5 +1,5 @@
 import isFunction from './isFunction/isFunction';
-import isArray from './isArray';
+import isArray from './isArray/isArray';
 
 const TypeCheck = Object.freeze({
   isFunction,

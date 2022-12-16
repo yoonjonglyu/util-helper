@@ -1,4 +1,4 @@
-import isArray from '.';
+import isArray from './isArray';
 
 describe('isArray', () => {
   test('arg is Array', () => {
