@@ -22,8 +22,11 @@ describe('getQuery', () => {
     });
   });
 
-  test('getQuery', () => {
+  test('getQuery return URLSearchParams', () => {
     window.location.search = '?test=google&name=top';
-    expect(getQuery()).toEqual(new URLSearchParams(window.location.search))
+    expect(getQuery()).toEqual(new URLSearchParams(window.location.search));
+    expect(getQuery().get('test')).toBe('google');
+    expect(getQuery().get('name')).toBe('top');
+    expect(getQuery().has('asdasd')).toBeFalsy();
   });
 });
