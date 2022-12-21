@@ -21,11 +21,9 @@ describe('getQuery', () => {
       },
     });
   });
-  
+
   test('getQuery', () => {
     window.location.search = '?test=google&name=top';
-    expect(getQuery().toString()).toBe(
-      new URLSearchParams(window.location.search).toString(),
-    );
+    expect(getQuery()).toEqual(new URLSearchParams(window.location.search))
   });
 });
