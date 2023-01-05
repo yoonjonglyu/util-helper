@@ -1,4 +1,4 @@
-import getQuery from './getQuery';
+import getQuery from './getQuery/getQuery';
 
 const QueryString = Object.freeze({
   getQuery,
