@@ -1,11 +1,11 @@
 import TypeCheck from './typecheck';
 import QueryString from './querystring';
 
+export const { isArray, isFunction, isNumber, isString } = TypeCheck;
+export const { getQuery, setQuery } = QueryString;
 const UtilHelper = Object.freeze({
   TypeCheck,
-  ...TypeCheck,
   QueryString,
-  ...QueryString,
 });
 
 export default UtilHelper;
