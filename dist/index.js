@@ -3,10 +3,11 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.setQuery = exports.isString = exports.isNumber = exports.isFunction = exports.isArray = exports.getQuery = exports["default"] = exports.addComma = void 0;
+exports.setQuery = exports.loadCDN = exports.isString = exports.isNumber = exports.isFunction = exports.isArray = exports.getQuery = exports["default"] = exports.addComma = void 0;
 var _typecheck = _interopRequireDefault(require("./typecheck"));
 var _querystring = _interopRequireDefault(require("./querystring"));
 var _format = _interopRequireDefault(require("./format"));
+var _import = _interopRequireDefault(require("./import"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 var isArray = _typecheck["default"].isArray,
   isFunction = _typecheck["default"].isFunction,
@@ -22,10 +23,13 @@ exports.setQuery = setQuery;
 exports.getQuery = getQuery;
 var addComma = _format["default"].addComma;
 exports.addComma = addComma;
+var loadCDN = _import["default"].loadCDN;
+exports.loadCDN = loadCDN;
 var UtilHelper = Object.freeze({
   TypeCheck: _typecheck["default"],
   QueryString: _querystring["default"],
-  Format: _format["default"]
+  Format: _format["default"],
+  Import: _import["default"]
 });
 var _default = UtilHelper;
 exports["default"] = _default;
