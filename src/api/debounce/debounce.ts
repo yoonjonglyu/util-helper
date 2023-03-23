@@ -2,17 +2,17 @@ function debounce<T extends (...args: any[]) => any>(
   func: T,
   wait: number,
 ): (...args: Parameters<T>) => ReturnType<T> {
-  let debouceId: ReturnType<typeof setTimeout> | null = null;
+  let debounceId: ReturnType<typeof setTimeout> | null = null;
 
   const start = (args: T) => {
-    debouceId = setTimeout(() => {
+    debounceId = setTimeout(() => {
       func.call(func, args);
-      debouceId = null;
+      debounceId = null;
     }, wait);
   };
 
   const cancel = () => {
-    clearTimeout(debouceId!);
+    clearTimeout(debounceId!);
   };
 
   const debounced = (...args: any) => {
