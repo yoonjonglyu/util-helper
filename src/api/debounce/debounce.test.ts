@@ -35,4 +35,25 @@ describe('debounce', () => {
     jest.advanceTimersByTime(100);
     expect(mockFn).toBeCalledTimes(3);
   });
+  test('cancel debounced function', () => {
+    const mockFn = jest.fn();
+    const debouncedFn = debounce(mockFn, 100);
+
+    debouncedFn(); // 1
+    debouncedFn.cancel(); // cancel
+    jest.advanceTimersByTime(110);
+
+    expect(mockFn).not.toBeCalled();
+  });
+  test('check debounce a function state', () => {
+    const mockFn = jest.fn();
+    const debouncedFn = debounce(mockFn, 100);
+
+    expect(debouncedFn.pending()).toBeFalsy(); // prev
+    debouncedFn(); // 1
+    expect(debouncedFn.pending()).toBeTruthy(); // pending
+    jest.advanceTimersByTime(100);
+    expect(debouncedFn.pending()).toBeFalsy(); // invoke
+    expect(mockFn).toBeCalled();
+  });
 });

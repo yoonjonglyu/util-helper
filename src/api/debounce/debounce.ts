@@ -1,26 +1,44 @@
-function debounce<T extends (...args: any[]) => any>(
-  func: T,
-  wait: number,
-): (...args: Parameters<T>) => ReturnType<T> {
-  let debounceId: ReturnType<typeof setTimeout> | null = null;
+type FuncType<T extends any[], R> = (...args: T) => R;
 
-  const start = (args: T) => {
+function debounce<T extends any[], R>(
+  func: FuncType<T, R>,
+  wait: number,
+): FuncType<T, () => R> & {
+  cancel: () => void;
+  pending: () => boolean;
+} {
+  let debounceId: ReturnType<typeof setTimeout> | null = null;
+  let result: R;
+  let _args: T;
+  let lastCallTime: number;
+
+  const invokeFunc = () => {
+    result = func.call(func, ...(_args || []));
+    debounceId = null;
+  };
+  const start = () => {
+    lastCallTime = Date.now() + wait;
     debounceId = setTimeout(() => {
-      func.call(func, args);
-      debounceId = null;
+      if (Date.now() >= lastCallTime) invokeFunc();
     }, wait);
   };
-
   const cancel = () => {
     clearTimeout(debounceId!);
+    debounceId = null;
+  };
+  const pending = () => {
+    return Date.now() < lastCallTime;
   };
 
-  const debounced = (...args: any) => {
-    cancel();
-    start(args);
+  const debounced = (...args: T) => {
+    _args = args;
+    start();
+    return () => result;
   };
+  debounced.cancel = cancel;
+  debounced.pending = pending;
 
-  return debounced as (...args: Parameters<T>) => ReturnType<T>;
+  return debounced;
 }
 
 export default debounce;
