@@ -19,10 +19,12 @@ import { isArray, getQuery } from 'isa-util';
 
 ### Type Check
 
-1. isArray: (arg: any) => boolean; 
+1. isArray: (arg: any) => boolean;
 2. isFunction: (arg:any) => boolean;
-3. isString: (arg:any) => boolean;
-4. isNumber: (arg:any) => boolean;
+3. isObject: (arg: any) => boolean;
+4. isString: (arg:any) => boolean;
+5. isNumber: (arg:any) => boolean;
+6. isSymbol: (arg: any) => boolean;
 
 ### Query String
 
@@ -36,3 +38,7 @@ import { isArray, getQuery } from 'isa-util';
 ### Import
 
 1. loadCDN: (id: string, src: string) => void;
+
+### API
+
+1. debounce: (func: function, wait: number) => (args: any) => any & {cancel: () => void; pending: () => boolean;};
