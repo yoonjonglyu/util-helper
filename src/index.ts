@@ -16,7 +16,7 @@ export const {
 export const { getQuery, setQuery } = QueryString;
 export const { addComma } = Format;
 export const { loadCDN } = Import;
-export const { debounce } = Api;
+export const { debounce, throttle } = Api;
 const UtilHelper = Object.freeze({
   TypeCheck,
   QueryString,
