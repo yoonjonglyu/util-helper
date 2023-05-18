@@ -37,8 +37,9 @@ import { isArray, getQuery } from 'isa-util';
 
 ### Import
 
-1. loadCDN: (id: string, src: string) => void;
+1. loadCDN: (id: string, src: string option?: ScriptAttribute) => void;
 
 ### API
 
 1. debounce: (func: function, wait: number) => (args: any) => any & {cancel: () => void; pending: () => boolean;};
+2. throttle: (func: function, wait: number) => (args: any) => any;
