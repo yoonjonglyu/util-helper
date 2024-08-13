@@ -12,6 +12,7 @@ export const {
   isSymbol,
   isNull,
   isObject,
+  isBlob,
 } = TypeCheck;
 export const { getQuery, setQuery } = QueryString;
 export const { addComma } = Format;
