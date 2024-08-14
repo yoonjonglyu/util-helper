@@ -25,6 +25,7 @@ import { isArray, getQuery } from 'isa-util';
 4. isString: (arg:any) => boolean;
 5. isNumber: (arg:any) => boolean;
 6. isSymbol: (arg: any) => boolean;
+7. isBlob: (arg: any) => boolean;
 
 ### Query String
 
@@ -39,7 +40,15 @@ import { isArray, getQuery } from 'isa-util';
 
 1. loadCDN: (id: string, src: string option?: ScriptAttribute) => void;
 
+### Export
+
+1. download: (data: Blob, name: string, type: string) => void;
+
 ### API
 
 1. debounce: (func: function, wait: number) => (args: any) => any & {cancel: () => void; pending: () => boolean;};
 2. throttle: (func: function, wait: number) => (args: any) => any;
+
+
+## LICENSE
+MIT
