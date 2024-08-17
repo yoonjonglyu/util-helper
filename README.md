@@ -1,54 +1,83 @@
 # isa-util
 
-js utils in browser;
+A set of JavaScript utilities for use in the browser.
 
-# Installl
+## Installation
 
-1. npm
-   `npm i isa-util`
-2. yarn
-   `yarn add isa-util`
+### Using npm
 
-# Usage
+```bash
+npm install isa-util
+```
 
-```js
+### Using Yarn
+
+```bash
+yarn add isa-util
+```
+
+## Usage Example
+
+```javascript
 import { isArray, getQuery } from 'isa-util';
 ```
 
-## API
+## API Documentation
 
-### Type Check
+### Type Checking
 
-1. isArray: (arg: any) => boolean;
-2. isFunction: (arg:any) => boolean;
-3. isObject: (arg: any) => boolean;
-4. isString: (arg:any) => boolean;
-5. isNumber: (arg:any) => boolean;
-6. isSymbol: (arg: any) => boolean;
-7. isBlob: (arg: any) => boolean;
+1. **`isArray(arg: any): boolean`**  
+   Checks if the argument is an array.
 
-### Query String
+2. **`isFunction(arg: any): boolean`**  
+   Checks if the argument is a function.
 
-1. getQuery: () => URLSearchParams;
-2. setQuery: (arg: URLSearchParams) => void;
+3. **`isObject(arg: any): boolean`**  
+   Checks if the argument is an object.
 
-### Format
+4. **`isString(arg: any): boolean`**  
+   Checks if the argument is a string.
 
-1. addComma: (arg: number) => string;
+5. **`isNumber(arg: any): boolean`**  
+   Checks if the argument is a number.
 
-### Import
+6. **`isSymbol(arg: any): boolean`**  
+   Checks if the argument is a symbol.
 
-1. loadCDN: (id: string, src: string option?: ScriptAttribute) => void;
+7. **`isBlob(arg: any): boolean`**  
+   Checks if the argument is a Blob.
 
-### Export
+### Query String Utilities
 
-1. download: (data: Blob, name: string, type: string) => void;
+1. **`getQuery(): URLSearchParams`**  
+   Retrieves the current URL query parameters as a `URLSearchParams` object.
 
-### API
+2. **`setQuery(arg: URLSearchParams): void`**  
+   Sets the URL query parameters using a `URLSearchParams` object.
 
-1. debounce: (func: function, wait: number) => (args: any) => any & {cancel: () => void; pending: () => boolean;};
-2. throttle: (func: function, wait: number) => (args: any) => any;
+### Formatting Utilities
 
+1. **`addComma(arg: number): string`**  
+   Formats a number by adding commas as thousand separators.
 
-## LICENSE
-MIT
+### Script Importing
+
+1. **`loadCDN(id: string, src: string, options?: ScriptAttribute): void`**  
+   Dynamically loads a script from a CDN with optional attributes.
+
+### File Exporting
+
+1. **`download(data: Blob, name: string, type: string): void`**  
+   Triggers a download for a given Blob with the specified filename and MIME type.
+
+### Utility Functions
+
+1. **`debounce(func: Function, wait: number): Function & { cancel: () => void; pending: () => boolean; }`**  
+   Creates a debounced function that delays invoking `func` until after `wait` milliseconds have passed. Returns a function with `cancel` and `pending` methods.
+
+2. **`throttle(func: Function, wait: number): Function`**  
+   Creates a throttled function that only invokes `func` at most once per `wait` milliseconds.
+
+## License
+
+This project is licensed under the MIT License. For more details, see the [LICENSE](./LICENSE).
