@@ -46,6 +46,9 @@ import { isArray, getQuery } from 'isa-util';
 
 7. **`isBlob(arg: any): boolean`**  
    Checks if the argument is a Blob.
+   
+8. **`isUndefined(arg: any): boolean`**
+   checks if the argument is a undefined.
 
 ### Query String Utilities
 
