@@ -1,4 +1,4 @@
-function isBlob(arg: any) {
+function isBlob(arg: any):boolean {
   return Object.prototype.toString.call(arg) === '[object Blob]';
 }
 
