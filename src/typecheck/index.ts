@@ -6,6 +6,7 @@ import isSymbol from './isSymbol/isSymbol';
 import isNull from './isNull/isNull';
 import isObject from './isObject/isObject';
 import isBlob from './isBlob/isBlob';
+import isUndefined from './isUndefined/isUndefined';
 
 const TypeCheck = Object.freeze({
   isFunction,
@@ -16,6 +17,7 @@ const TypeCheck = Object.freeze({
   isNull,
   isObject,
   isBlob,
+  isUndefined,
 });
 
 export default TypeCheck;
