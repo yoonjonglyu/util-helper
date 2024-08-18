@@ -8,7 +8,8 @@
   "scripts": {
     "test": "jest --watchAll",
     "publish:npm": "rimraf dist &&  babel src -d dist --extensions \".ts\" --ignore **/*.test.ts",
-    "publish:type": "tsc --declaration --allowJs --emitDeclarationOnly --outDir dist"
+    "publish:type": "tsc --declaration --allowJs --emitDeclarationOnly --outDir dist",
+    "build": "yarn publish:npm && yarn publish:type"
   },
   "repository": {
     "type": "git",
