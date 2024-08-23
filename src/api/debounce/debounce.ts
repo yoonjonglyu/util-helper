@@ -3,7 +3,8 @@ type FuncType<T extends any[], R> = (...args: T) => R;
 function debounce<T extends any[], R>(
   func: FuncType<T, R>,
   wait: number,
-): FuncType<T, () => R> & {
+): {
+  (...args: T): Promise<() => R>;
   cancel: () => void;
   pending: () => boolean;
 } {
@@ -30,7 +31,7 @@ function debounce<T extends any[], R>(
     return Date.now() < lastCallTime;
   };
 
-  const debounced = (...args: T) => {
+  const debounced = async (...args: T) => {
     _args = args;
     start();
     return () => result;
