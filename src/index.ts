@@ -19,7 +19,7 @@ export const {
 export const { getQuery, setQuery } = QueryString;
 export const { addComma } = Format;
 export const { loadCDN } = Import;
-export const { debounce, throttle } = Api;
+export const { debounce, throttle, getPlatfrom } = Api;
 export const { download } = Export;
 const UtilHelper = Object.freeze({
   TypeCheck,
