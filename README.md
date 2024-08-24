@@ -81,6 +81,9 @@ import { isArray, getQuery } from 'isa-util';
 2. **`throttle(func: Function, wait: number): Function`**  
    Creates a throttled function that only invokes `func` at most once per `wait` milliseconds.
 
+3. **`getPlatform(): { os: string, browser: string, mobile: boolean } | null`**  
+   Returns an object containing the user's platform information, including the operating system, browser, and whether the user is on a mobile device.
+
 ## License
 
 This project is licensed under the MIT License. For more details, see the [LICENSE](./LICENSE).

@@ -7,7 +7,7 @@ export interface PlatformProps {
   mobile: boolean;
 }
 
-function getPlatfrom(): PlatformProps | null {
+function getPlatform(): PlatformProps | null {
   const platfrom: PlatformProps = {
     os: '',
     broswer: '',
@@ -28,7 +28,7 @@ function getPlatfrom(): PlatformProps | null {
   return null;
 }
 
-export default getPlatfrom;
+export default getPlatform;
 
 function getBrowserName(userAgent: string) {
   if (userAgent.includes('Firefox')) {
