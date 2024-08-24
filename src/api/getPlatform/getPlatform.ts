@@ -14,6 +14,7 @@ function getPlatfrom(): PlatformProps | null {
     mobile: false,
   };
   if (!isUndefined(navigator.userAgentData)) {
+    platfrom.broswer = getBrowserName(navigator.userAgent);
     platfrom.os = navigator.userAgentData.platform;
     platfrom.mobile = navigator.userAgentData.mobile;
     return platfrom;
