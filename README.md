@@ -50,6 +50,12 @@ import { isArray, getQuery } from 'isa-util';
 8. **`isUndefined(arg: any): boolean`**  
    checks if the argument is a undefined.
 
+9. **`isFalsy(arg: any): boolean`**  
+   checks if the argument is a falsy.
+   
+10. **`isTruthy(arg: any): boolean`**  
+    checks if the argument is a truthy.
+
 ### Query String Utilities
 
 1. **`getQuery(): URLSearchParams`**  
