@@ -15,6 +15,7 @@ export const {
   isObject,
   isBlob,
   isUndefined,
+  isFalsy,
 } = TypeCheck;
 export const { getQuery, setQuery } = QueryString;
 export const { addComma } = Format;
