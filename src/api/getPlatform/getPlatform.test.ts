@@ -21,7 +21,7 @@ describe('getPlatfrom', () => {
     //@ts-ignore
     window.navigator.userAgent =
       'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36';
-    expect(getPlatform()?.os).toBe('Window');
+    expect(getPlatform()?.os).toBe('Windows');
     expect(getPlatform()?.mobile).toBeFalsy();
     expect(getPlatform()?.broswer).toBe('Google Chrome or Chromium');
   });
@@ -37,7 +37,7 @@ describe('getPlatfrom', () => {
     //@ts-ignore
     window.navigator.userAgent =
       'Mozilla/5.0 (iPhone; CPU iPhone OS 16_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Mobile/15E148 Safari/604.1';
-    expect(getPlatform()?.os).toBe('IOS');
+    expect(getPlatform()?.os).toBe('iOS');
     expect(getPlatform()?.mobile).toBeTruthy();
     expect(getPlatform()?.broswer).toBe('Apple Safari');
   });

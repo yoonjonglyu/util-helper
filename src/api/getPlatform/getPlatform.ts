@@ -6,8 +6,10 @@ export interface PlatformProps {
   broswer: ReturnType<typeof getBrowserName>;
   mobile: boolean;
 }
-
-function getPlatfrom(): PlatformProps | null {
+/**
+ * @todo 브라우저 호환성 이슈 및 표준 이슈로 추후 userAgent와 userAgentData의 규격에 따라 수정해야됨
+ */
+function getPlatform(): PlatformProps | null {
   const platfrom: PlatformProps = {
     os: '',
     broswer: '',
@@ -28,7 +30,7 @@ function getPlatfrom(): PlatformProps | null {
   return null;
 }
 
-export default getPlatfrom;
+export default getPlatform;
 
 function getBrowserName(userAgent: string) {
   if (userAgent.includes('Firefox')) {
@@ -59,10 +61,12 @@ function getBrowserName(userAgent: string) {
 function getOsName(userAgent: string) {
   if (userAgent.includes('Android')) {
     return 'Android';
+  } else if (userAgent.match(/like Mac OS X/i)) {
+    return 'iOS';
   } else if (userAgent.includes('Mac')) {
-    return 'IOS';
+    return 'macOS';
   } else if (userAgent.includes('Windows')) {
-    return 'Window';
+    return 'Windows';
   } else if (userAgent.includes('Linux')) {
     return 'Linux';
   } else return 'unknown';

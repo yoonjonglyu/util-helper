@@ -50,6 +50,12 @@ import { isArray, getQuery } from 'isa-util';
 8. **`isUndefined(arg: any): boolean`**  
    checks if the argument is a undefined.
 
+9. **`isFalsy(arg: any): boolean`**  
+   checks if the argument is a falsy.
+   
+10. **`isTruthy(arg: any): boolean`**  
+    checks if the argument is a truthy.
+
 ### Query String Utilities
 
 1. **`getQuery(): URLSearchParams`**  
@@ -80,6 +86,9 @@ import { isArray, getQuery } from 'isa-util';
 
 2. **`throttle(func: Function, wait: number): Function`**  
    Creates a throttled function that only invokes `func` at most once per `wait` milliseconds.
+
+3. **`getPlatform(): { os: string, browser: string, mobile: boolean } | null`**  
+   Returns an object containing the user's platform information, including the operating system, browser, and whether the user is on a mobile device.
 
 ## License
 
