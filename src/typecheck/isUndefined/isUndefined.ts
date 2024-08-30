@@ -1,4 +1,4 @@
-function isUndefined(arg: any): boolean {
+function isUndefined(arg: any): arg is undefined {
   return arg === undefined;
 }
 

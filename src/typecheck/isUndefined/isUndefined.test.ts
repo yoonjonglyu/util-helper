@@ -2,12 +2,16 @@ import isUndefined from './isUndefined';
 
 describe('isUndefined', () => {
   test('arg is undefined', () => {
-    expect(isUndefined(undefined)).toBe(true);
+    expect(isUndefined(undefined)).toBeTruthy();
+    // @ts-ignore
+    expect(isUndefined()).toBeTruthy();
   });
   test('arg not undefined', () => {
-    expect(isUndefined('symbol')).toBe(false);
-    expect(isUndefined(123)).toBe(false);
-    expect(isUndefined({})).toBe(false);
-    expect(isUndefined(null)).toBe(false);
+    expect(isUndefined('symbol')).toBeFalsy();
+    expect(isUndefined(123)).toBeFalsy();
+    expect(isUndefined({})).toBeFalsy();
+    expect(isUndefined(null)).toBeFalsy();
+    expect(isUndefined(0)).toBeFalsy();
+    expect(isUndefined('')).toBeFalsy();
   });
 });

@@ -1,4 +1,4 @@
-function isFunction(arg: any): boolean {
+function isFunction(arg: any): arg is Function {
   return typeof arg === 'function';
 }
 

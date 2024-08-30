@@ -1,4 +1,6 @@
-function isFalsy(arg: any): boolean {
+type Falsy = null | undefined | '' | 0 | false;
+
+function isFalsy(arg: any): arg is Falsy {
   return !arg;
 }
 

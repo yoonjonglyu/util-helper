@@ -1,15 +1,20 @@
 import isObject from './isObject';
 
 describe('isObject', () => {
-  test('returns true if argument is an object', () => {
-    const myObject = { key: 'value' };
-    const result = isObject(myObject);
-    expect(result).toBe(true);
+  test('arg is  object', () => {
+    expect(isObject({ key: 'value' })).toBeTruthy();
+    expect(isObject({})).toBeTruthy();
+    expect(isObject(new Object())).toBeTruthy();
+    expect(isObject(Object.create(null))).toBeTruthy();
   });
 
-  test('returns false if argument is not an object', () => {
-    const myArray = [1, 2, 3];
-    const result = isObject(myArray);
-    expect(result).toBe(false);
+  test(' arg not object', () => {
+    expect(isObject([1, 2, 3])).toBeFalsy();
+    expect(isObject(null)).toBeFalsy();
+    expect(isObject('{}')).toBeFalsy();
+    expect(isObject(() => {})).toBeFalsy();
+    expect(isObject('2')).toBeFalsy();
+    expect(isObject('{"key": 1}')).toBeFalsy();
+    expect(isObject(undefined)).toBeFalsy();
   });
 });
