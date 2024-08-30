@@ -1,11 +1,11 @@
 import isString from './isString';
 
 describe('isString', () => {
-  test('args type String', () => {
+  test('arg is String', () => {
     expect(isString('')).toBeTruthy();
     expect(isString('asd')).toBeTruthy();
   });
-  test('args type not string', () => {
+  test('arg not string', () => {
     expect(isString(1)).toBeFalsy();
     expect(isString(null)).toBeFalsy();
     expect(isString(undefined)).toBeFalsy();

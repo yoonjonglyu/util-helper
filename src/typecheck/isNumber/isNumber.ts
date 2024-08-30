@@ -1,5 +1,5 @@
-function isNumber(args: any): boolean{
-  return typeof args === 'number';
+function isNumber(arg: any): arg is number {
+  return typeof arg === 'number';
 }
 
 export default isNumber;
