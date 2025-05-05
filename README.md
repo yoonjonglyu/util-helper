@@ -113,9 +113,7 @@ demoEncryption();
 3. **`getPlatform(): { os: string, browser: string, mobile: boolean } | null`**
    Returns an object containing the user's platform information, including the operating system, browser, and whether the user is on a mobile device.
 
-### Security
-
-#### Crypto Utilities
+### Crypto Utilities
 **Note**: Encryption uses AES-GCM with 256-bit keys derived via PBKDF2 (SHA-256, 100,000 iterations).  
 
 1. **`encryptData(data: string, password: string, salt: string): Promise<{ iv: number[], encryptedData: number[] }>`**
