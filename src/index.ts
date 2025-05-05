@@ -21,6 +21,7 @@ export const {
   isToday,
   isDarkMode,
   isTouchDevice,
+  isMobile,
 } = TypeCheck;
 export const { getQuery, setQuery } = QueryString;
 export const { addComma, formatDate, timeAgo } = Format;

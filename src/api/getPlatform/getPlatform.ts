@@ -1,5 +1,6 @@
 // @ts-nocheck
 import isUndefined from '../../typecheck/isUndefined/isUndefined';
+import isMobile from '../../typecheck/isMobile/isMobile';
 
 export interface PlatformProps {
   os: ReturnType<typeof getOsName>;
@@ -22,7 +23,7 @@ function getPlatform(): PlatformProps | null {
     return platfrom;
   } else if (!isUndefined(navigator.userAgent)) {
     platfrom.os = getOsName(navigator.userAgent);
-    platfrom.mobile = checkMobile(navigator.userAgent);
+    platfrom.mobile = isMobile(navigator.userAgent);
     platfrom.broswer = getBrowserName(navigator.userAgent);
     return platfrom;
   }
@@ -70,7 +71,4 @@ function getOsName(userAgent: string) {
   } else if (userAgent.includes('Linux')) {
     return 'Linux';
   } else return 'unknown';
-}
-function checkMobile(userAgent: string) {
-  return userAgent.match(/Android|iPhone/i);
 }
