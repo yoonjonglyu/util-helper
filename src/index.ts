@@ -18,6 +18,7 @@ export const {
   isUndefined,
   isFalsy,
   isTruthy,
+  isToday,
 } = TypeCheck;
 export const { getQuery, setQuery } = QueryString;
 export const { addComma, formatDate, timeAgo } = Format;

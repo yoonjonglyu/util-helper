@@ -9,6 +9,7 @@ import isBlob from './isBlob/isBlob';
 import isUndefined from './isUndefined/isUndefined';
 import isFalsy from './isFalsy/isFalsy';
 import isTruthy from './isTruthy/isTruthy';
+import isToday from './isToday/isToday';
 
 const TypeCheck = Object.freeze({
   isFunction,
@@ -22,6 +23,7 @@ const TypeCheck = Object.freeze({
   isUndefined,
   isFalsy,
   isTruthy,
+  isToday,
 });
 
 export default TypeCheck;
