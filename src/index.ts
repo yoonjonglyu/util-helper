@@ -20,7 +20,7 @@ export const {
   isTruthy,
 } = TypeCheck;
 export const { getQuery, setQuery } = QueryString;
-export const { addComma, formatDate } = Format;
+export const { addComma, formatDate, timeAgo } = Format;
 export const { loadCDN } = Import;
 export const { debounce, throttle, getPlatfrom } = Api;
 export const { download } = Export;
