@@ -5,6 +5,7 @@ import Import from './import';
 import Api from './api';
 import Export from './export';
 import Security from './security';
+import Storage from './storage';
 
 export const {
   isArray,
@@ -38,6 +39,7 @@ export const {
   decryptPasswordWithSalt,
   decryptPasswordWithSaltAndEncrypt,
 } = Security.cryptos;
+export const { setLocalStorage } = Storage;
 
 const UtilHelper = Object.freeze({
   TypeCheck,
@@ -47,6 +49,7 @@ const UtilHelper = Object.freeze({
   Api,
   Export,
   Security,
+  Storage,
 });
 
 export default UtilHelper;
