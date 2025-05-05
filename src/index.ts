@@ -4,6 +4,7 @@ import Format from './format';
 import Import from './import';
 import Api from './api';
 import Export from './export';
+import Security from './security';
 
 export const {
   isArray,
@@ -23,6 +24,17 @@ export const { addComma } = Format;
 export const { loadCDN } = Import;
 export const { debounce, throttle, getPlatfrom } = Api;
 export const { download } = Export;
+export const {
+  encryptData,
+  decryptData,
+  generateSalt,
+  generatePassword,
+  generatePasswordWithSalt,
+  generatePasswordWithSaltAndEncrypt,
+  decryptPasswordWithSalt,
+  decryptPasswordWithSaltAndEncrypt,
+} = Security.cryptos;
+
 const UtilHelper = Object.freeze({
   TypeCheck,
   QueryString,
@@ -30,6 +42,7 @@ const UtilHelper = Object.freeze({
   Import,
   Api,
   Export,
+  Security,
 });
 
 export default UtilHelper;
