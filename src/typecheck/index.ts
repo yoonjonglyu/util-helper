@@ -10,6 +10,7 @@ import isUndefined from './isUndefined/isUndefined';
 import isFalsy from './isFalsy/isFalsy';
 import isTruthy from './isTruthy/isTruthy';
 import isToday from './isToday/isToday';
+import isDarkMode from './isDarkMode/isDarkMode';
 
 const TypeCheck = Object.freeze({
   isFunction,
@@ -24,6 +25,7 @@ const TypeCheck = Object.freeze({
   isFalsy,
   isTruthy,
   isToday,
+  isDarkMode,
 });
 
 export default TypeCheck;
