@@ -114,7 +114,8 @@ demoEncryption();
    Returns an object containing the user's platform information, including the operating system, browser, and whether the user is on a mobile device.
 
 ### Crypto Utilities
-**Note**: Encryption uses AES-GCM with 256-bit keys derived via PBKDF2 (SHA-256, 100,000 iterations).  
+
+**Note**: Encryption uses AES-GCM with 256-bit keys derived via PBKDF2 (SHA-256, 100,000 iterations).
 
 1. **`encryptData(data: string, password: string, salt: string): Promise<{ iv: number[], encryptedData: number[] }>`**
    Encrypts a string using AES-GCM with a password-derived key and returns the IV and encrypted data.
@@ -139,6 +140,53 @@ demoEncryption();
 
 8. **`decryptPasswordWithSaltAndEncrypt(encryptedData: number[], iv: number[], password: string, salt: string, data: string): Promise<string>`**
    Decrypts and verifies that the decrypted data matches the original input.
+
+### Date & Time Utilities
+
+1. **`formatDate(date: Date, format: string): string`**
+   Formats a JavaScript `Date` object into a custom string format like `'YYYY-MM-DD HH:mm:ss'`.
+
+2. **`timeAgo(date: Date | string): string`**
+   Returns a human-readable time difference string like "5 minutes ago" or "2 days ago".
+
+3. **`isToday(date: Date): boolean`**
+   Returns `true` if the given date is today.
+
+### Environment Detection
+
+1. **`isMobile(): boolean`**
+   Detects whether the current device is a mobile device.
+
+2. **`isDarkMode(): boolean`**
+   Detects whether the user's system prefers dark mode.
+
+3. **`isTouchDevice(): boolean`**
+   Checks if the current device supports touch interactions.
+
+### Storage Utilities
+
+1. **`setLocalStorage(key: string, value: any): void`**
+   Sets a value in `localStorage`.
+
+2. **`getLocalStorage(key: string): any`**
+   Retrieves a value from `localStorage`.
+
+3. **`removeLocalStorage(key: string): void`**
+   Removes a value from `localStorage`.
+
+### DOM Utilities
+
+1. **`hasClass(el: Element, className: string): boolean`**
+   Checks if an element contains a class.
+
+2. **`addClass(el: Element, className: string): void`**
+   Adds a class to an element.
+
+3. **`removeClass(el: Element, className: string): void`**
+   Removes a class from an element.
+
+4. **`toggleClass(el: Element, className: string): void`**
+   Toggles a class on an element.
 
 ## License
 
