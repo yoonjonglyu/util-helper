@@ -41,7 +41,7 @@ export const {
   decryptPasswordWithSaltAndEncrypt,
 } = Security.cryptos;
 export const { setLocalStorage, getLocalStorage, removeLocalStorage } = Storage;
-export const { hasClass, addClass } = Dom;
+export const { hasClass, addClass, removeClass } = Dom;
 
 const UtilHelper = Object.freeze({
   TypeCheck,
