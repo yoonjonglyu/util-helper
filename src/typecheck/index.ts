@@ -9,6 +9,10 @@ import isBlob from './isBlob/isBlob';
 import isUndefined from './isUndefined/isUndefined';
 import isFalsy from './isFalsy/isFalsy';
 import isTruthy from './isTruthy/isTruthy';
+import isToday from './isToday/isToday';
+import isDarkMode from './isDarkMode/isDarkMode';
+import isTouchDevice from './isTouchDevice/isTouchDevice';
+import isMobile from './isMobile/isMobile';
 
 const TypeCheck = Object.freeze({
   isFunction,
@@ -22,6 +26,10 @@ const TypeCheck = Object.freeze({
   isUndefined,
   isFalsy,
   isTruthy,
+  isToday,
+  isDarkMode,
+  isTouchDevice,
+  isMobile,
 });
 
 export default TypeCheck;

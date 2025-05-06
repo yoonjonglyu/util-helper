@@ -4,6 +4,9 @@ import Format from './format';
 import Import from './import';
 import Api from './api';
 import Export from './export';
+import Security from './security';
+import Storage from './storage';
+import Dom from './dom';
 
 export const {
   isArray,
@@ -17,12 +20,29 @@ export const {
   isUndefined,
   isFalsy,
   isTruthy,
+  isToday,
+  isDarkMode,
+  isTouchDevice,
+  isMobile,
 } = TypeCheck;
 export const { getQuery, setQuery } = QueryString;
-export const { addComma } = Format;
+export const { addComma, formatDate, timeAgo } = Format;
 export const { loadCDN } = Import;
 export const { debounce, throttle, getPlatfrom } = Api;
 export const { download } = Export;
+export const {
+  encryptData,
+  decryptData,
+  generateSalt,
+  generatePassword,
+  generatePasswordWithSalt,
+  generatePasswordWithSaltAndEncrypt,
+  decryptPasswordWithSalt,
+  decryptPasswordWithSaltAndEncrypt,
+} = Security.cryptos;
+export const { setLocalStorage, getLocalStorage, removeLocalStorage } = Storage;
+export const { hasClass, addClass, removeClass, toggleClass } = Dom;
+
 const UtilHelper = Object.freeze({
   TypeCheck,
   QueryString,
@@ -30,6 +50,9 @@ const UtilHelper = Object.freeze({
   Import,
   Api,
   Export,
+  Security,
+  Storage,
+  Dom,
 });
 
 export default UtilHelper;
