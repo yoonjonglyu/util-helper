@@ -52,7 +52,7 @@ demoEncryption();
 
 ```ts
 isArray([1, 2, 3]); // true
-isString('hello');  // true
+isString('hello'); // true
 isObject({ a: 1 }); // true
 ```
 
@@ -99,10 +99,12 @@ download(blob, 'hello.txt', 'text/plain');
 
 ```ts
 const debounced = debounce(() => console.log('called'), 300);
-debounced(); debounced(); // 마지막 호출만 실행됨
+debounced();
+debounced(); // 마지막 호출만 실행됨
 
 const throttled = throttle(() => console.log('tick'), 1000);
-throttled(); throttled(); // 1초에 한 번만 실행됨
+throttled();
+throttled(); // 1초에 한 번만 실행됨
 ```
 
 ---
@@ -111,8 +113,8 @@ throttled(); throttled(); // 1초에 한 번만 실행됨
 
 ```ts
 getPlatform(); // { os: 'iOS', browser: 'Safari', mobile: true }
-isMobile();    // true/false
-isDarkMode();  // true/false
+isMobile(); // true/false
+isDarkMode(); // true/false
 ```
 
 ---
@@ -123,7 +125,12 @@ isDarkMode();  // true/false
 const salt = generateSalt();
 const password = generatePassword(16);
 const encrypted = await encryptData('secret', password, salt);
-const decrypted = await decryptData(encrypted.encryptedData, encrypted.iv, password, salt);
+const decrypted = await decryptData(
+  encrypted.encryptedData,
+  encrypted.iv,
+  password,
+  salt,
+);
 ```
 
 ---
@@ -170,7 +177,7 @@ await fq.flush(); // 병렬 실행
 // JobQueue
 const jq = new JobQueue<string>(async (job) => {
   console.log('processing', job);
-  await new Promise(r => setTimeout(r, 300));
+  await new Promise((r) => setTimeout(r, 300));
 });
 jq.enqueue('task A');
 jq.enqueue('task B'); // 순차 실행
@@ -186,15 +193,17 @@ jq.enqueue('task B'); // 순차 실행
    Checks if the argument is an array.
 
    **Usage Example:**
+
    ```ts
    isArray([1, 2, 3]); // true
-   isArray("hello"); // false
+   isArray('hello'); // false
    ```
 
 2. **`isFunction(arg: any): boolean`**  
    Checks if the argument is a function.
 
    **Usage Example:**
+
    ```ts
    isFunction(() => {}); // true
    isFunction(123); // false
@@ -204,8 +213,9 @@ jq.enqueue('task B'); // 순차 실행
    Checks if the argument is an object.
 
    **Usage Example:**
+
    ```ts
-   isObject({ key: "value" }); // true
+   isObject({ key: 'value' }); // true
    isObject([1, 2, 3]); // false
    ```
 
@@ -213,8 +223,9 @@ jq.enqueue('task B'); // 순차 실행
    Checks if the argument is a string.
 
    **Usage Example:**
+
    ```ts
-   isString("Hello, world!"); // true
+   isString('Hello, world!'); // true
    isString(123); // false
    ```
 
@@ -222,33 +233,37 @@ jq.enqueue('task B'); // 순차 실행
    Checks if the argument is a number.
 
    **Usage Example:**
+
    ```ts
    isNumber(42); // true
-   isNumber("Hello"); // false
+   isNumber('Hello'); // false
    ```
 
 6. **`isSymbol(arg: any): boolean`**  
    Checks if the argument is a symbol.
 
    **Usage Example:**
+
    ```ts
    isSymbol(Symbol('test')); // true
-   isSymbol("not a symbol"); // false
+   isSymbol('not a symbol'); // false
    ```
 
 7. **`isBlob(arg: any): boolean`**  
    Checks if the argument is a Blob.
 
    **Usage Example:**
+
    ```ts
    isBlob(new Blob()); // true
-   isBlob("not a blob"); // false
+   isBlob('not a blob'); // false
    ```
 
 8. **`isUndefined(arg: any): boolean`**  
    Checks if the argument is undefined.
 
    **Usage Example:**
+
    ```ts
    isUndefined(undefined); // true
    isUndefined(null); // false
@@ -258,19 +273,21 @@ jq.enqueue('task B'); // 순차 실행
    Checks if the argument is falsy (false, 0, "", null, undefined, NaN).
 
    **Usage Example:**
+
    ```ts
    isFalsy(null); // true
    isFalsy(0); // true
-   isFalsy("hello"); // false
+   isFalsy('hello'); // false
    ```
 
 10. **`isTruthy(arg: any): boolean`**  
     Checks if the argument is truthy (not falsy).
 
     **Usage Example:**
+
     ```ts
     isTruthy(1); // true
-    isTruthy(""); // false
+    isTruthy(''); // false
     ```
 
 ### Query String Utilities
@@ -279,18 +296,20 @@ jq.enqueue('task B'); // 순차 실행
    Retrieves the current URL query parameters as a `URLSearchParams` object.
 
    **Usage Example:**
+
    ```ts
    const queryParams = getQuery();
-   console.log(queryParams.get("user")); // prints the value of 'user' query parameter
+   console.log(queryParams.get('user')); // prints the value of 'user' query parameter
    ```
 
 2. **`setQuery(arg: URLSearchParams): void`**  
    Sets the URL query parameters using a `URLSearchParams` object.
 
    **Usage Example:**
+
    ```ts
    const params = new URLSearchParams();
-   params.append("page", "1");
+   params.append('page', '1');
    setQuery(params); // Updates the URL's query params to ?page=1
    ```
 
@@ -300,6 +319,7 @@ jq.enqueue('task B'); // 순차 실행
    Formats a number by adding commas as thousand separators.
 
    **Usage Example:**
+
    ```ts
    addComma(1000000); // "1,000,000"
    ```
@@ -310,8 +330,12 @@ jq.enqueue('task B'); // 순차 실행
    Dynamically loads a script from a CDN with optional attributes.
 
    **Usage Example:**
+
    ```ts
-   loadCDN('lodash', 'https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js');
+   loadCDN(
+     'lodash',
+     'https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js',
+   );
    ```
 
 ### File Exporting
@@ -320,6 +344,7 @@ jq.enqueue('task B'); // 순차 실행
    Triggers a download for a given Blob with the specified filename and MIME type.
 
    **Usage Example:**
+
    ```ts
    const blob = new Blob(['Hello, world!'], { type: 'text/plain' });
    download(blob, 'hello.txt', 'text/plain');
@@ -331,46 +356,118 @@ jq.enqueue('task B'); // 순차 실행
    Creates a debounced function that delays invoking `func` until after `wait` milliseconds have passed.
 
    **Usage Example:**
+
    ```ts
-   const handler = debounce(() => console.log("called!"), 300);
-   handler(); handler(); // Only the last call within 300ms will be executed
+   const handler = debounce(() => console.log('called!'), 300);
+   handler();
+   handler(); // Only the last call within 300ms will be executed
    ```
 
 2. **`throttle(func: Function, wait: number): Function`**  
    Creates a throttled function that only invokes `func` at most once per `wait` milliseconds.
 
    **Usage Example:**
+
    ```ts
-   const throttledLog = throttle(() => console.log("Logged!"), 1000);
-   throttledLog(); throttledLog(); // Will log only once per 1000ms
+   const throttledLog = throttle(() => console.log('Logged!'), 1000);
+   throttledLog();
+   throttledLog(); // Will log only once per 1000ms
    ```
 
 3. **`getPlatform(): { os: string, browser: string, mobile: boolean } | null`**  
    Returns an object containing the user's platform information, including the operating system, browser, and whether the user is on a mobile device.
 
    **Usage Example:**
+
    ```ts
    const platform = getPlatform();
    console.log(platform.os, platform.browser); // logs current platform info
+   ```
+
+4. **`JobQueue<T>(processJob: (job: T) => Promise<void>): enqueue(job: T)`**  
+   A class that manages a queue of asynchronous jobs and processes them one at a time. Jobs are added to the queue using enqueue, and the class ensures they are processed sequentially.
+
+   **Usage Example:**
+
+   ```ts
+   const queue = new JobQueue<string>(async (job) => {
+     console.log(`Processing job: ${job}`);
+     await new Promise((resolve) => setTimeout(resolve, 1000)); // 1초 대기
+   });
+
+   queue.enqueue('Job 1');
+   queue.enqueue('Job 2');
+   queue.enqueue('Job 3');
+   ```
+
+5. **`FlushQueue(options: FlushQueueOptions): add(id: string, job: AsyncJob)`**  
+    A class that manages a queue of asynchronous jobs with optional debounce and custom start/finish handlers. Jobs can be added, canceled, and flushed either in parallel or sequentially.
+
+   **Usage Example:**
+
+   ```ts
+   const queue = new FlushQueue({
+     debounceMs: 300, // Debounce for 300ms before flushing
+     onStart: (id) => console.log(`Starting job ${id}`),
+     onFinish: (id, error) => {
+       if (error) {
+         console.error(`Job ${id} failed`, error);
+       } else {
+         console.log(`Job ${id} finished`);
+       }
+     },
+   });
+
+   const job1: AsyncJob = async () => {
+     console.log('Processing Job 1');
+     await new Promise((resolve) => setTimeout(resolve, 1000));
+   };
+   const job2: AsyncJob = async () => {
+     console.log('Processing Job 2');
+     await new Promise((resolve) => setTimeout(resolve, 1000));
+   };
+
+   queue.add('job1', job1);
+   queue.add('job2', job2);
+
+   // Force flush all jobs sequentially
+   queue.flush(false);
+   ```
+
+6. **`sleep(ms: number): Promise<void>`**
+   A utility function that pauses the execution for the specified number of milliseconds by returning a **Promise** that resolves after the given delay.
+
+   **Usage Example:**
+
+   ```ts
+   async function example() {
+     console.log('Start');
+     await sleep(1000); // Sleep for 1 second
+     console.log('End after 1 second');
+   }
+
+   example();
    ```
 
 ### Crypto Utilities
 
 **Note**: Encryption uses AES-GCM with 256-bit keys derived via PBKDF2 (SHA-256, 100,000 iterations).
 
-1. **`encryptData(data: string, password: string, salt: string): Promise<{ iv: number[], encryptedData: number[] }>`**  
+1. **`encryptData(data: string, password: string, salt: string): Promise<{ iv: number[], encryptedData: number[] }>`**
    Encrypts a string using AES-GCM with a password-derived key and returns the IV and encrypted data.
 
-   **Usage Example:**
-   ```ts
-   const { iv, encryptedData } = await encryptData('Hello', 'password', 'salt');
-   console.log(encryptedData);
-   ```
+**Usage Example:**
+
+```ts
+const { iv, encryptedData } = await encryptData('Hello', 'password', 'salt');
+console.log(encryptedData);
+```
 
 2. **`decryptData(encryptedData: number[], iv: number[], password: string, salt: string): Promise<string>`**  
    Decrypts AES-GCM encrypted data using the provided IV, password, and salt.
 
    **Usage Example:**
+
    ```ts
    const decrypted = await decryptData(encryptedData, iv, 'password', 'salt');
    console.log(decrypted); // 'Hello'
@@ -400,6 +497,7 @@ jq.enqueue('task B'); // 순차 실행
    Formats a JavaScript `Date` object into a custom string format like `'YYYY-MM-DD HH:mm:ss'`.
 
    **Usage Example:**
+
    ```ts
    formatDate(new Date(), 'YYYY-MM-DD HH:mm:ss'); // "2025-05-13 12:34:56"
    ```
@@ -408,16 +506,18 @@ jq.enqueue('task B'); // 순차 실행
    Returns a human-readable time difference string like "5 minutes ago" or "2 days ago".
 
    **Usage Example:**
+
    ```ts
-   timeAgo(new Date("2025-05-12")); // "1 day ago"
+   timeAgo(new Date('2025-05-12')); // "1 day ago"
    ```
 
 3. **`isToday(date: Date): boolean`**
    Returns `true` if the given date is today.
-   
+
    **Usage Example:**
+
    ```ts
-   isToday(new Date("2005-05-12")); // "false"
+   isToday(new Date('2005-05-12')); // "false"
    ```
 
 ### Environment Detection
@@ -437,17 +537,20 @@ jq.enqueue('task B'); // 순차 실행
    Sets a value in `localStorage`.
 
    **Usage Example:**
+
    ```ts
-   setLocalStorage("user", { name: "Alice" });
+   setLocalStorage('user', { name: 'Alice' });
    ```
 
 2. **`getLocalStorage(key: string): any`**  
    Retrieves a value from `localStorage`.
 
    **Usage Example:**
+
    ```ts
-   const user = getLocalStorage("user");
+   const user = getLocalStorage('user');
    console.log(user.name); // "Alice"
+   ```
 
 3. **`removeLocalStorage(key: string): void`**
    Removes a value from `localStorage`.
@@ -458,6 +561,7 @@ jq.enqueue('task B'); // 순차 실행
    Checks if an element contains a class.
 
    **Usage Example:**
+
    ```ts
    hasClass(document.body, 'dark-mode'); // true/false
    ```
@@ -466,6 +570,7 @@ jq.enqueue('task B'); // 순차 실행
    Adds a class to an element.
 
    **Usage Example:**
+
    ```ts
    addClass(document.body, 'dark-mode');
    ```
@@ -474,6 +579,7 @@ jq.enqueue('task B'); // 순차 실행
    Removes a class from an element.
 
    **Usage Example:**
+
    ```ts
    removeClass(document.body, 'dark-mode');
    ```
