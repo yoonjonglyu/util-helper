@@ -16,7 +16,7 @@ npm install isa-util
 yarn add isa-util
 ```
 
-## Usage Example
+## 📌 Quick Usage Examples
 
 ```javascript
 import {
@@ -43,85 +43,338 @@ async function demoEncryption() {
 }
 
 demoEncryption();
+
+---
+
 ```
+
+### ✅ Type Checking
+
+```ts
+isArray([1, 2, 3]); // true
+isString('hello');  // true
+isObject({ a: 1 }); // true
+```
+
+---
+
+### 🔍 Query String Utilities
+
+```ts
+const query = getQuery();
+console.log(query.get('page')); // e.g. '1'
+
+query.set('page', '2');
+setQuery(query); // URL 업데이트
+```
+
+---
+
+### 💱 Formatting
+
+```ts
+addComma(1234567); // '1,234,567'
+```
+
+---
+
+### 📦 CDN Script Import
+
+```ts
+loadCDN('jquery', 'https://code.jquery.com/jquery-3.6.0.min.js');
+```
+
+---
+
+### 📁 File Download
+
+```ts
+const blob = new Blob(['Hello world'], { type: 'text/plain' });
+download(blob, 'hello.txt', 'text/plain');
+```
+
+---
+
+### ⏳ Debounce & Throttle
+
+```ts
+const debounced = debounce(() => console.log('called'), 300);
+debounced(); debounced(); // 마지막 호출만 실행됨
+
+const throttled = throttle(() => console.log('tick'), 1000);
+throttled(); throttled(); // 1초에 한 번만 실행됨
+```
+
+---
+
+### 📱 Platform Detection
+
+```ts
+getPlatform(); // { os: 'iOS', browser: 'Safari', mobile: true }
+isMobile();    // true/false
+isDarkMode();  // true/false
+```
+
+---
+
+### 🔐 Encryption
+
+```ts
+const salt = generateSalt();
+const password = generatePassword(16);
+const encrypted = await encryptData('secret', password, salt);
+const decrypted = await decryptData(encrypted.encryptedData, encrypted.iv, password, salt);
+```
+
+---
+
+### 📅 Date & Time
+
+```ts
+formatDate(new Date(), 'YYYY-MM-DD'); // '2025-05-13'
+timeAgo(new Date(Date.now() - 60000)); // '1 minute ago'
+isToday(new Date()); // true
+```
+
+---
+
+### 🧠 Storage
+
+```ts
+setLocalStorage('key', { name: 'isa' });
+getLocalStorage('key'); // { name: 'isa' }
+removeLocalStorage('key');
+```
+
+---
+
+### 🧩 DOM Utilities
+
+```ts
+addClass(document.body, 'dark');
+hasClass(document.body, 'dark'); // true
+toggleClass(document.body, 'dark'); // toggle
+```
+
+---
+
+### 🚀 Async Utilities
+
+```ts
+// FlushQueue
+const fq = new FlushQueue();
+fq.add('job1', async () => console.log('job 1'));
+fq.add('job2', async () => console.log('job 2'));
+await fq.flush(); // 병렬 실행
+
+// JobQueue
+const jq = new JobQueue<string>(async (job) => {
+  console.log('processing', job);
+  await new Promise(r => setTimeout(r, 300));
+});
+jq.enqueue('task A');
+jq.enqueue('task B'); // 순차 실행
+```
+
+---
 
 ## API Documentation
 
 ### Type Checking
 
-1. **`isArray(arg: any): boolean`**
+1. **`isArray(arg: any): boolean`**  
    Checks if the argument is an array.
 
-2. **`isFunction(arg: any): boolean`**
+   **Usage Example:**
+   ```ts
+   isArray([1, 2, 3]); // true
+   isArray("hello"); // false
+   ```
+
+2. **`isFunction(arg: any): boolean`**  
    Checks if the argument is a function.
 
-3. **`isObject(arg: any): boolean`**
+   **Usage Example:**
+   ```ts
+   isFunction(() => {}); // true
+   isFunction(123); // false
+   ```
+
+3. **`isObject(arg: any): boolean`**  
    Checks if the argument is an object.
 
-4. **`isString(arg: any): boolean`**
+   **Usage Example:**
+   ```ts
+   isObject({ key: "value" }); // true
+   isObject([1, 2, 3]); // false
+   ```
+
+4. **`isString(arg: any): boolean`**  
    Checks if the argument is a string.
 
-5. **`isNumber(arg: any): boolean`**
+   **Usage Example:**
+   ```ts
+   isString("Hello, world!"); // true
+   isString(123); // false
+   ```
+
+5. **`isNumber(arg: any): boolean`**  
    Checks if the argument is a number.
 
-6. **`isSymbol(arg: any): boolean`**
+   **Usage Example:**
+   ```ts
+   isNumber(42); // true
+   isNumber("Hello"); // false
+   ```
+
+6. **`isSymbol(arg: any): boolean`**  
    Checks if the argument is a symbol.
 
-7. **`isBlob(arg: any): boolean`**
+   **Usage Example:**
+   ```ts
+   isSymbol(Symbol('test')); // true
+   isSymbol("not a symbol"); // false
+   ```
+
+7. **`isBlob(arg: any): boolean`**  
    Checks if the argument is a Blob.
 
-8. **`isUndefined(arg: any): boolean`**
+   **Usage Example:**
+   ```ts
+   isBlob(new Blob()); // true
+   isBlob("not a blob"); // false
+   ```
+
+8. **`isUndefined(arg: any): boolean`**  
    Checks if the argument is undefined.
 
-9. **`isFalsy(arg: any): boolean`**
-   Checks if the argument is falsy.
+   **Usage Example:**
+   ```ts
+   isUndefined(undefined); // true
+   isUndefined(null); // false
+   ```
 
-10. **`isTruthy(arg: any): boolean`**
-    Checks if the argument is truthy.
+9. **`isFalsy(arg: any): boolean`**  
+   Checks if the argument is falsy (false, 0, "", null, undefined, NaN).
+
+   **Usage Example:**
+   ```ts
+   isFalsy(null); // true
+   isFalsy(0); // true
+   isFalsy("hello"); // false
+   ```
+
+10. **`isTruthy(arg: any): boolean`**  
+    Checks if the argument is truthy (not falsy).
+
+    **Usage Example:**
+    ```ts
+    isTruthy(1); // true
+    isTruthy(""); // false
+    ```
 
 ### Query String Utilities
 
-1. **`getQuery(): URLSearchParams`**
+1. **`getQuery(): URLSearchParams`**  
    Retrieves the current URL query parameters as a `URLSearchParams` object.
 
-2. **`setQuery(arg: URLSearchParams): void`**
+   **Usage Example:**
+   ```ts
+   const queryParams = getQuery();
+   console.log(queryParams.get("user")); // prints the value of 'user' query parameter
+   ```
+
+2. **`setQuery(arg: URLSearchParams): void`**  
    Sets the URL query parameters using a `URLSearchParams` object.
+
+   **Usage Example:**
+   ```ts
+   const params = new URLSearchParams();
+   params.append("page", "1");
+   setQuery(params); // Updates the URL's query params to ?page=1
+   ```
 
 ### Formatting Utilities
 
-1. **`addComma(arg: number): string`**
+1. **`addComma(arg: number): string`**  
    Formats a number by adding commas as thousand separators.
+
+   **Usage Example:**
+   ```ts
+   addComma(1000000); // "1,000,000"
+   ```
 
 ### Script Importing
 
-1. **`loadCDN(id: string, src: string, options?: ScriptAttribute): void`**
+1. **`loadCDN(id: string, src: string, options?: ScriptAttribute): void`**  
    Dynamically loads a script from a CDN with optional attributes.
+
+   **Usage Example:**
+   ```ts
+   loadCDN('lodash', 'https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js');
+   ```
 
 ### File Exporting
 
-1. **`download(data: Blob, name: string, type: string): void`**
+1. **`download(data: Blob, name: string, type: string): void`**  
    Triggers a download for a given Blob with the specified filename and MIME type.
+
+   **Usage Example:**
+   ```ts
+   const blob = new Blob(['Hello, world!'], { type: 'text/plain' });
+   download(blob, 'hello.txt', 'text/plain');
+   ```
 
 ### Utility Functions
 
-1. **`debounce(func: Function, wait: number): Function & { cancel: () => void; pending: () => boolean; }`**
-   Creates a debounced function that delays invoking `func` until after `wait` milliseconds have passed. Returns a function with `cancel` and `pending` methods.
+1. **`debounce(func: Function, wait: number): Function & { cancel: () => void; pending: () => boolean; }`**  
+   Creates a debounced function that delays invoking `func` until after `wait` milliseconds have passed.
 
-2. **`throttle(func: Function, wait: number): Function`**
+   **Usage Example:**
+   ```ts
+   const handler = debounce(() => console.log("called!"), 300);
+   handler(); handler(); // Only the last call within 300ms will be executed
+   ```
+
+2. **`throttle(func: Function, wait: number): Function`**  
    Creates a throttled function that only invokes `func` at most once per `wait` milliseconds.
 
-3. **`getPlatform(): { os: string, browser: string, mobile: boolean } | null`**
+   **Usage Example:**
+   ```ts
+   const throttledLog = throttle(() => console.log("Logged!"), 1000);
+   throttledLog(); throttledLog(); // Will log only once per 1000ms
+   ```
+
+3. **`getPlatform(): { os: string, browser: string, mobile: boolean } | null`**  
    Returns an object containing the user's platform information, including the operating system, browser, and whether the user is on a mobile device.
+
+   **Usage Example:**
+   ```ts
+   const platform = getPlatform();
+   console.log(platform.os, platform.browser); // logs current platform info
+   ```
 
 ### Crypto Utilities
 
 **Note**: Encryption uses AES-GCM with 256-bit keys derived via PBKDF2 (SHA-256, 100,000 iterations).
 
-1. **`encryptData(data: string, password: string, salt: string): Promise<{ iv: number[], encryptedData: number[] }>`**
+1. **`encryptData(data: string, password: string, salt: string): Promise<{ iv: number[], encryptedData: number[] }>`**  
    Encrypts a string using AES-GCM with a password-derived key and returns the IV and encrypted data.
 
-2. **`decryptData(encryptedData: number[], iv: number[], password: string, salt: string): Promise<string>`**
+   **Usage Example:**
+   ```ts
+   const { iv, encryptedData } = await encryptData('Hello', 'password', 'salt');
+   console.log(encryptedData);
+   ```
+
+2. **`decryptData(encryptedData: number[], iv: number[], password: string, salt: string): Promise<string>`**  
    Decrypts AES-GCM encrypted data using the provided IV, password, and salt.
+
+   **Usage Example:**
+   ```ts
+   const decrypted = await decryptData(encryptedData, iv, 'password', 'salt');
+   console.log(decrypted); // 'Hello'
+   ```
 
 3. **`generateSalt(): string`**
    Generates a 16-byte random salt string.
@@ -143,14 +396,29 @@ demoEncryption();
 
 ### Date & Time Utilities
 
-1. **`formatDate(date: Date, format: string): string`**
+1. **`formatDate(date: Date, format: string): string`**  
    Formats a JavaScript `Date` object into a custom string format like `'YYYY-MM-DD HH:mm:ss'`.
 
-2. **`timeAgo(date: Date | string): string`**
+   **Usage Example:**
+   ```ts
+   formatDate(new Date(), 'YYYY-MM-DD HH:mm:ss'); // "2025-05-13 12:34:56"
+   ```
+
+2. **`timeAgo(date: Date | string): string`**  
    Returns a human-readable time difference string like "5 minutes ago" or "2 days ago".
+
+   **Usage Example:**
+   ```ts
+   timeAgo(new Date("2025-05-12")); // "1 day ago"
+   ```
 
 3. **`isToday(date: Date): boolean`**
    Returns `true` if the given date is today.
+   
+   **Usage Example:**
+   ```ts
+   isToday(new Date("2005-05-12")); // "false"
+   ```
 
 ### Environment Detection
 
@@ -165,25 +433,50 @@ demoEncryption();
 
 ### Storage Utilities
 
-1. **`setLocalStorage(key: string, value: any): void`**
+1. **`setLocalStorage(key: string, value: any): void`**  
    Sets a value in `localStorage`.
 
-2. **`getLocalStorage(key: string): any`**
+   **Usage Example:**
+   ```ts
+   setLocalStorage("user", { name: "Alice" });
+   ```
+
+2. **`getLocalStorage(key: string): any`**  
    Retrieves a value from `localStorage`.
+
+   **Usage Example:**
+   ```ts
+   const user = getLocalStorage("user");
+   console.log(user.name); // "Alice"
 
 3. **`removeLocalStorage(key: string): void`**
    Removes a value from `localStorage`.
 
 ### DOM Utilities
 
-1. **`hasClass(el: Element, className: string): boolean`**
+1. **`hasClass(el: Element, className: string): boolean`**  
    Checks if an element contains a class.
 
-2. **`addClass(el: Element, className: string): void`**
+   **Usage Example:**
+   ```ts
+   hasClass(document.body, 'dark-mode'); // true/false
+   ```
+
+2. **`addClass(el: Element, className: string): void`**  
    Adds a class to an element.
 
-3. **`removeClass(el: Element, className: string): void`**
+   **Usage Example:**
+   ```ts
+   addClass(document.body, 'dark-mode');
+   ```
+
+3. **`removeClass(el: Element, className: string): void`**  
    Removes a class from an element.
+
+   **Usage Example:**
+   ```ts
+   removeClass(document.body, 'dark-mode');
+   ```
 
 4. **`toggleClass(el: Element, className: string): void`**
    Toggles a class on an element.
