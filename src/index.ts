@@ -28,7 +28,7 @@ export const {
 export const { getQuery, setQuery } = QueryString;
 export const { addComma, formatDate, timeAgo } = Format;
 export const { loadCDN } = Import;
-export const { debounce, throttle, getPlatfrom, JobQueue } = Api;
+export const { debounce, throttle, getPlatfrom, JobQueue, FlushQueue } = Api;
 export const { download } = Export;
 export const {
   encryptData,
