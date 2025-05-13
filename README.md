@@ -189,7 +189,7 @@ jq.enqueue('task B'); // 순차 실행
 
 ### Type Checking
 
-1. **`isArray(arg: any): boolean`**  
+1. **`isArray(arg: any): boolean`**
    Checks if the argument is an array.
 
    **Usage Example:**
@@ -292,7 +292,7 @@ jq.enqueue('task B'); // 순차 실행
 
 ### Query String Utilities
 
-1. **`getQuery(): URLSearchParams`**  
+1. **`getQuery(): URLSearchParams`**
    Retrieves the current URL query parameters as a `URLSearchParams` object.
 
    **Usage Example:**
@@ -315,7 +315,7 @@ jq.enqueue('task B'); // 순차 실행
 
 ### Formatting Utilities
 
-1. **`addComma(arg: number): string`**  
+1. **`addComma(arg: number): string`**
    Formats a number by adding commas as thousand separators.
 
    **Usage Example:**
@@ -326,7 +326,7 @@ jq.enqueue('task B'); // 순차 실행
 
 ### Script Importing
 
-1. **`loadCDN(id: string, src: string, options?: ScriptAttribute): void`**  
+1. **`loadCDN(id: string, src: string, options?: ScriptAttribute): void`**
    Dynamically loads a script from a CDN with optional attributes.
 
    **Usage Example:**
@@ -340,7 +340,7 @@ jq.enqueue('task B'); // 순차 실행
 
 ### File Exporting
 
-1. **`download(data: Blob, name: string, type: string): void`**  
+1. **`download(data: Blob, name: string, type: string): void`**
    Triggers a download for a given Blob with the specified filename and MIME type.
 
    **Usage Example:**
@@ -352,8 +352,8 @@ jq.enqueue('task B'); // 순차 실행
 
 ### Utility Functions
 
-1. **`debounce(func: Function, wait: number): Function & { cancel: () => void; pending: () => boolean; }`**  
-   Creates a debounced function that delays invoking `func` until after `wait` milliseconds have passed.
+1. **`debounce(func: Function, wait: number): Function & { cancel: () => void; pending: () => boolean; }`**
+   Creates a debounced function that delays invoking `func` until after `wait` milliseconds have passed. Returns a function with `cancel` and `pending` methods.
 
    **Usage Example:**
 
@@ -363,7 +363,8 @@ jq.enqueue('task B'); // 순차 실행
    handler(); // Only the last call within 300ms will be executed
    ```
 
-2. **`throttle(func: Function, wait: number): Function`**  
+
+2. **`throttle(func: Function, wait: number): Function`**
    Creates a throttled function that only invokes `func` at most once per `wait` milliseconds.
 
    **Usage Example:**
@@ -472,7 +473,7 @@ console.log(encryptedData);
    const decrypted = await decryptData(encryptedData, iv, 'password', 'salt');
    console.log(decrypted); // 'Hello'
    ```
-
+   
 3. **`generateSalt(): string`**
    Generates a 16-byte random salt string.
 
@@ -583,6 +584,7 @@ console.log(encryptedData);
    ```ts
    removeClass(document.body, 'dark-mode');
    ```
+
 
 4. **`toggleClass(el: Element, className: string): void`**
    Toggles a class on an element.
