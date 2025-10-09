@@ -74,6 +74,28 @@ setQuery(query); // URL 업데이트
 
 ```ts
 addComma(1234567); // '1,234,567'
+camelCase('@#@assd-wsd_asd fkfk'); // assdWsdAsdFkfk
+```
+
+---
+
+### 📦 CDN Script Import
+
+```ts
+loadCDN('jquery', 'https://code.jquery.com/jquery-3.6.0.min.js');
+```
+
+---
+
+### 📁 File Download
+
+```ts
+const blob = new Blob(['Hello world'], { type: 'text/plain' });
+download(blob, 'hello.txt', 'text/plain');
+```
+
+---
+
 ```
 
 ---
@@ -272,6 +294,15 @@ jq.enqueue('task B'); // 순차 실행
 9. **`isFalsy(arg: any): boolean`**  
    Checks if the argument is falsy (false, 0, "", null, undefined, NaN).
 
+
+   ```ts
+   isUndefined(undefined); // true
+   isUndefined(null); // false
+   ```
+
+9. **`isFalsy(arg: any): boolean`**  
+   Checks if the argument is falsy (false, 0, "", null, undefined, NaN).
+
    **Usage Example:**
 
    ```ts
@@ -322,6 +353,33 @@ jq.enqueue('task B'); // 순차 실행
 
    ```ts
    addComma(1000000); // "1,000,000"
+   ```
+
+2. **`camelCase(input: string): string`**
+   Formats a string by camelCase.
+
+   **Usage Example:**
+
+   ```ts
+   camelCase('@#@assd-wsd_asd fkfk'); // assdWsdAsdFkfk
+   ```
+
+3. **`pascalCase(input: string): string`**
+   Formats a string by pascalCase.
+
+   **Usage Example:**
+
+   ```ts
+   pascalCase('@#@assd-wsd_asd fkfk'); // AssdWsdAsdFkfk
+   ```
+
+4. **`snakeCase(input: string): string`**
+   Formats a string by snakeCase.
+
+   **Usage Example:**
+
+   ```ts
+   snakeCase('@#@assd-wsd_asd fkfk'); // assd_wsd_asd_fkfk
    ```
 
 ### Script Importing
@@ -473,6 +531,7 @@ console.log(encryptedData);
    const decrypted = await decryptData(encryptedData, iv, 'password', 'salt');
    console.log(decrypted); // 'Hello'
    ```
+
    
 3. **`generateSalt(): string`**
    Generates a 16-byte random salt string.
