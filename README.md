@@ -96,6 +96,27 @@ download(blob, 'hello.txt', 'text/plain');
 
 ---
 
+```
+
+---
+
+### 📦 CDN Script Import
+
+```ts
+loadCDN('jquery', 'https://code.jquery.com/jquery-3.6.0.min.js');
+```
+
+---
+
+### 📁 File Download
+
+```ts
+const blob = new Blob(['Hello world'], { type: 'text/plain' });
+download(blob, 'hello.txt', 'text/plain');
+```
+
+---
+
 ### ⏳ Debounce & Throttle
 
 ```ts
@@ -273,6 +294,15 @@ jq.enqueue('task B'); // 순차 실행
 9. **`isFalsy(arg: any): boolean`**  
    Checks if the argument is falsy (false, 0, "", null, undefined, NaN).
 
+
+   ```ts
+   isUndefined(undefined); // true
+   isUndefined(null); // false
+   ```
+
+9. **`isFalsy(arg: any): boolean`**  
+   Checks if the argument is falsy (false, 0, "", null, undefined, NaN).
+
    **Usage Example:**
 
    ```ts
@@ -391,6 +421,7 @@ jq.enqueue('task B'); // 순차 실행
    handler(); // Only the last call within 300ms will be executed
    ```
 
+
 2. **`throttle(func: Function, wait: number): Function`**
    Creates a throttled function that only invokes `func` at most once per `wait` milliseconds.
 
@@ -501,6 +532,7 @@ console.log(encryptedData);
    console.log(decrypted); // 'Hello'
    ```
 
+   
 3. **`generateSalt(): string`**
    Generates a 16-byte random salt string.
 
@@ -611,6 +643,7 @@ console.log(encryptedData);
    ```ts
    removeClass(document.body, 'dark-mode');
    ```
+
 
 4. **`toggleClass(el: Element, className: string): void`**
    Toggles a class on an element.
