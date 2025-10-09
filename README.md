@@ -74,6 +74,7 @@ setQuery(query); // URL 업데이트
 
 ```ts
 addComma(1234567); // '1,234,567'
+camelCase('@#@assd-wsd_asd fkfk'); // assdWsdAsdFkfk
 ```
 
 ---
@@ -324,6 +325,33 @@ jq.enqueue('task B'); // 순차 실행
    addComma(1000000); // "1,000,000"
    ```
 
+2. **`camelCase(input: string): string`**
+   Formats a string by camelCase.
+
+   **Usage Example:**
+
+   ```ts
+   camelCase('@#@assd-wsd_asd fkfk'); // assdWsdAsdFkfk
+   ```
+
+3. **`pascalCase(input: string): string`**
+   Formats a string by pascalCase.
+
+   **Usage Example:**
+
+   ```ts
+   pascalCase('@#@assd-wsd_asd fkfk'); // AssdWsdAsdFkfk
+   ```
+
+4. **`snakeCase(input: string): string`**
+   Formats a string by snakeCase.
+
+   **Usage Example:**
+
+   ```ts
+   snakeCase('@#@assd-wsd_asd fkfk'); // assd_wsd_asd_fkfk
+   ```
+
 ### Script Importing
 
 1. **`loadCDN(id: string, src: string, options?: ScriptAttribute): void`**
@@ -362,7 +390,6 @@ jq.enqueue('task B'); // 순차 실행
    handler();
    handler(); // Only the last call within 300ms will be executed
    ```
-
 
 2. **`throttle(func: Function, wait: number): Function`**
    Creates a throttled function that only invokes `func` at most once per `wait` milliseconds.
@@ -473,7 +500,7 @@ console.log(encryptedData);
    const decrypted = await decryptData(encryptedData, iv, 'password', 'salt');
    console.log(decrypted); // 'Hello'
    ```
-   
+
 3. **`generateSalt(): string`**
    Generates a 16-byte random salt string.
 
@@ -584,7 +611,6 @@ console.log(encryptedData);
    ```ts
    removeClass(document.body, 'dark-mode');
    ```
-
 
 4. **`toggleClass(el: Element, className: string): void`**
    Toggles a class on an element.
