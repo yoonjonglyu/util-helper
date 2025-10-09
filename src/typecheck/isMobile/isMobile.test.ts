@@ -33,23 +33,14 @@ describe('isMobile', () => {
   });
 
   it('should use the default navigator.userAgent if no argument is provided', () => {
-    const userAgentMock =
-      'Mozilla/5.0 (iPhone; CPU iPhone OS 14_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Mobile/15E148 Safari/604.1';
-
-    const originalUserAgent = navigator.userAgent;
-
-    // 기존 userAgent를 재정의
-    Object.defineProperty(window.navigator, 'userAgent', {
-      value: userAgentMock,
-      configurable: true,
-    });
+    const spy = jest
+      .spyOn(window.navigator, 'userAgent', 'get')
+      .mockReturnValue(
+        'Mozilla/5.0 (iPhone; CPU iPhone OS 14_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Mobile/15E148 Safari/604.1',
+      );
 
     expect(isMobile()).toBe(true);
 
-    // 원래 값 복원
-    Object.defineProperty(window.navigator, 'userAgent', {
-      value: originalUserAgent,
-      configurable: true,
-    });
+    spy.mockRestore();
   });
 });
