@@ -26,7 +26,7 @@ export const {
   isMobile,
 } = TypeCheck;
 export const { getQuery, setQuery } = QueryString;
-export const { addComma, formatDate, timeAgo } = Format;
+export const { addComma, formatDate, timeAgo, camelCase } = Format;
 export const { loadCDN } = Import;
 export const { debounce, throttle, getPlatfrom, JobQueue, FlushQueue, sleep } =
   Api;
