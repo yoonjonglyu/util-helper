@@ -3,6 +3,7 @@ import formatDate from './formatDate/formatDate';
 import timeAgo from './timeAgo/timeAgo';
 import camelCase from './camelCase/camelCase';
 import pascalCase from './pascalCase/pascalCase';
+import snakeCase from './snakeCase/snakeCase';
 
 const Format = Object.freeze({
   addComma,
@@ -10,6 +11,7 @@ const Format = Object.freeze({
   timeAgo,
   camelCase,
   pascalCase,
+  snakeCase,
 });
 
 export default Format;
