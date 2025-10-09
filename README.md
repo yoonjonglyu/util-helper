@@ -96,7 +96,6 @@ download(blob, 'hello.txt', 'text/plain');
 
 ---
 
-```
 
 ---
 
