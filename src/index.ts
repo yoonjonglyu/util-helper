@@ -33,6 +33,8 @@ export const {
   camelCase,
   pascalCase,
   snakeCase,
+  formatClass,
+  cx,
 } = Format;
 export const { loadCDN } = Import;
 export const { debounce, throttle, getPlatfrom, JobQueue, FlushQueue, sleep } =

@@ -4,6 +4,7 @@ import timeAgo from './timeAgo/timeAgo';
 import camelCase from './camelCase/camelCase';
 import pascalCase from './pascalCase/pascalCase';
 import snakeCase from './snakeCase/snakeCase';
+import formatClass, { cx } from './formatClass/formatClass';
 
 const Format = Object.freeze({
   addComma,
@@ -12,6 +13,8 @@ const Format = Object.freeze({
   camelCase,
   pascalCase,
   snakeCase,
+  formatClass,
+  cx,
 });
 
 export default Format;
