@@ -75,6 +75,13 @@ setQuery(query); // URL 업데이트
 ```ts
 addComma(1234567); // '1,234,567'
 camelCase('@#@assd-wsd_asd fkfk'); // assdWsdAsdFkfk
+formatClass(
+  'a',
+  { b: true, c: false },
+  ['d', { e: true, f: 0 }, ['g', ['', null]]],
+  0,
+  undefined,
+); //a b d e g 0
 ```
 
 ---
@@ -95,7 +102,6 @@ download(blob, 'hello.txt', 'text/plain');
 ```
 
 ---
-
 
 ---
 
@@ -293,24 +299,23 @@ jq.enqueue('task B'); // 순차 실행
 9. **`isFalsy(arg: any): boolean`**  
    Checks if the argument is falsy (false, 0, "", null, undefined, NaN).
 
-
    ```ts
    isUndefined(undefined); // true
    isUndefined(null); // false
    ```
 
-9. **`isFalsy(arg: any): boolean`**  
-   Checks if the argument is falsy (false, 0, "", null, undefined, NaN).
+10. **`isFalsy(arg: any): boolean`**  
+    Checks if the argument is falsy (false, 0, "", null, undefined, NaN).
 
-   **Usage Example:**
+    **Usage Example:**
 
-   ```ts
-   isFalsy(null); // true
-   isFalsy(0); // true
-   isFalsy('hello'); // false
-   ```
+    ```ts
+    isFalsy(null); // true
+    isFalsy(0); // true
+    isFalsy('hello'); // false
+    ```
 
-10. **`isTruthy(arg: any): boolean`**  
+11. **`isTruthy(arg: any): boolean`**  
     Checks if the argument is truthy (not falsy).
 
     **Usage Example:**
@@ -381,6 +386,15 @@ jq.enqueue('task B'); // 순차 실행
    snakeCase('@#@assd-wsd_asd fkfk'); // assd_wsd_asd_fkfk
    ```
 
+5. **`formatClass(...args: any): string`** | **`cx(...args): string`**
+   Formats args by className.
+
+   **Usage Example:**
+
+   ```ts
+   formatClass('a', 0, 1); // 'a 0 1'
+   ```
+
 ### Script Importing
 
 1. **`loadCDN(id: string, src: string, options?: ScriptAttribute): void`**
@@ -419,7 +433,6 @@ jq.enqueue('task B'); // 순차 실행
    handler();
    handler(); // Only the last call within 300ms will be executed
    ```
-
 
 2. **`throttle(func: Function, wait: number): Function`**
    Creates a throttled function that only invokes `func` at most once per `wait` milliseconds.
@@ -531,7 +544,6 @@ console.log(encryptedData);
    console.log(decrypted); // 'Hello'
    ```
 
-   
 3. **`generateSalt(): string`**
    Generates a 16-byte random salt string.
 
@@ -642,7 +654,6 @@ console.log(encryptedData);
    ```ts
    removeClass(document.body, 'dark-mode');
    ```
-
 
 4. **`toggleClass(el: Element, className: string): void`**
    Toggles a class on an element.
