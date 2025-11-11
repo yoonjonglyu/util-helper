@@ -699,22 +699,22 @@ console.log(encryptedData);
    await idb.deleteDB('my-db');
    ```
 
-9. **`idb.each<T>(dbName: string, store: string, callback: (value: T, key: IDBValidKey, cursor: IDBCursorWithValue) => void): Promise<void>`**
+9. **`idb.cursor.each<T>(dbName: string, store: string, callback: (value: T, key: IDBValidKey, cursor: IDBCursorWithValue) => void): Promise<void>`**
    Iterates over all items in the store and executes the callback for each.
    **Usage Example:**
 
    ```ts
-   await idb.each('my-db', 'users', (value, key) => {
+   await idb.cursor.each('my-db', 'users', (value, key) => {
      console.log(key, value.name);
    });
    ```
 
-10. **`idb.query<T>(dbName: string, store: string, options?: CursorOptions<T>): Promise<T[]>`**
+10. **`idb.cursor.query<T>(dbName: string, store: string, options?: CursorOptions<T>): Promise<T[]>`**
     Advanced cursor query with optional `filter`, `sort`, `offset`, and `limit`.
     **Usage Example:**
 
     ```ts
-    const users = await query('my-db', 'users', {
+    const users = await idb.cursor.query('my-db', 'users', {
       filter: (user) => user.age >= 18,
       sort: (a, b) => a.age - b.age,
       offset: 1,
