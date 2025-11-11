@@ -178,6 +178,13 @@ isToday(new Date()); // true
 setLocalStorage('key', { name: 'isa' });
 getLocalStorage('key'); // { name: 'isa' }
 removeLocalStorage('key');
+const db = await idb.open('my-db', {
+  version: 1,
+  schema: {
+    users: { keyPath: 'id', autoIncrement: true },
+  },
+});
+console.log(db.objectStoreNames); // ["users"]
 ```
 
 ---
@@ -625,6 +632,96 @@ console.log(encryptedData);
 
 3. **`removeLocalStorage(key: string): void`**
    Removes a value from `localStorage`.
+
+   #### IndexDB - idb
+
+   >
+
+   ```ts
+   interface IDBOpenOptions: {
+      version?: number;
+      schema?: Record<string, IDBObjectStoreParameters>;
+      }
+   interface CursorOptions<T = any> {
+      range?: IDBKeyRange | null;
+      offset?: number;
+      limit?: number;
+      filter?: (value: T, key: IDBValidKey) => boolean;
+      sort?: (a: T, b: T) => number;
+   }
+   ```
+
+4. **`idb.open(name: string, options?: IDBOpenOptions): Promise<IDBDatabase>`**
+   Opens an IndexedDB database, creating object stores if they don’t exist.
+   **Usage Example:**
+
+   ```ts
+   const db = await idb.open('my-db', {
+     version: 1,
+     schema: {
+       users: { keyPath: 'id', autoIncrement: true },
+     },
+   });
+   console.log(db.objectStoreNames); // ["users"]
+   ```
+
+5. **`idb.get<T>(dbName: string, store: string, key: IDBValidKey): Promise<T | undefined>`**
+   Retrieves a single item from the specified object store by key.
+   **Usage Example:**
+
+   ```ts
+   const user = await idb.get('my-db', 'users', 1);
+   console.log(user?.name); // "Alice"
+   ```
+
+6. **`idb.put<T>(dbName: string, store: string, value: T): Promise<IDBValidKey>`**
+   Inserts or updates an item in the object store.
+   **Usage Example:**
+
+   ```ts
+   const key = await idb.put('my-db', 'users', { name: 'Alice' });
+   console.log(key); // 1
+   ```
+
+7. **`idb.clear(dbName: string, store: string): Promise<void>`**
+   Removes all items from the specified object store.
+   **Usage Example:**
+
+   ```ts
+   await idb.clear('my-db', 'users');
+   ```
+
+8. **`idb.deleteDB(name: string): Promise<void>`**
+   Deletes the entire database.
+   **Usage Example:**
+
+   ```ts
+   await idb.deleteDB('my-db');
+   ```
+
+9. **`idb.each<T>(dbName: string, store: string, callback: (value: T, key: IDBValidKey, cursor: IDBCursorWithValue) => void): Promise<void>`**
+   Iterates over all items in the store and executes the callback for each.
+   **Usage Example:**
+
+   ```ts
+   await idb.each('my-db', 'users', (value, key) => {
+     console.log(key, value.name);
+   });
+   ```
+
+10. **`idb.query<T>(dbName: string, store: string, options?: CursorOptions<T>): Promise<T[]>`**
+    Advanced cursor query with optional `filter`, `sort`, `offset`, and `limit`.
+    **Usage Example:**
+
+    ```ts
+    const users = await query('my-db', 'users', {
+      filter: (user) => user.age >= 18,
+      sort: (a, b) => a.age - b.age,
+      offset: 1,
+      limit: 2,
+    });
+    console.log(users);
+    ```
 
 ### DOM Utilities
 
