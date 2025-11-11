@@ -9,7 +9,7 @@ export async function openDB(
   if (cache.has(name)) return cache.get(name)!;
 
   return new Promise((resolve, reject) => {
-    const req = global.indexedDB.open(name, version);
+    const req = globalThis.indexedDB.open(name, version);
 
     req.onupgradeneeded = () => {
       const db = req.result;
@@ -116,7 +116,7 @@ export async function deleteDB(name: string): Promise<void> {
   }
 
   return new Promise((resolve, reject) => {
-    const req = global.indexedDB.deleteDatabase(name);
+    const req = globalThis.indexedDB.deleteDatabase(name);
     req.onsuccess = () => resolve();
     req.onerror = () => reject(req.error);
     req.onblocked = () => {
