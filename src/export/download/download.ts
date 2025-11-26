@@ -1,6 +1,6 @@
 import isBlob from '../../typecheck/isBlob/isBlob';
 
-const download = (data: Blob, name: string, type: string) => {
+const download = (data: Blob, name: string, type: string): void => {
   if (!isBlob(data)) return console.error('download require blob data.');
   if (name === undefined) return console.error('download require file name.');
   if (type === undefined) return console.error('download require file type.');
