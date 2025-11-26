@@ -23,7 +23,7 @@ describe('getPlatfrom', () => {
       'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36';
     expect(getPlatform()?.os).toBe('Windows');
     expect(getPlatform()?.mobile).toBeFalsy();
-    expect(getPlatform()?.broswer).toBe('Google Chrome or Chromium');
+    expect(getPlatform()?.browser).toBe('Google Chrome or Chromium');
   });
   test('Android Phone Samsung', () => {
     //@ts-ignore
@@ -31,7 +31,7 @@ describe('getPlatfrom', () => {
       'Mozilla/5.0 (Linux; Android 9; SAMSUNG SM-G955F Build/PPR1.180610.011) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/9.4 Chrome/67.0.3396.87 Mobile Safari/537.36';
     expect(getPlatform()?.os).toBe('Android');
     expect(getPlatform()?.mobile).toBeTruthy();
-    expect(getPlatform()?.broswer).toBe('Samsung Internet');
+    expect(getPlatform()?.browser).toBe('Samsung Internet');
   });
   test('IOS Iphone14pro Safari', () => {
     //@ts-ignore
@@ -39,6 +39,6 @@ describe('getPlatfrom', () => {
       'Mozilla/5.0 (iPhone; CPU iPhone OS 16_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Mobile/15E148 Safari/604.1';
     expect(getPlatform()?.os).toBe('iOS');
     expect(getPlatform()?.mobile).toBeTruthy();
-    expect(getPlatform()?.broswer).toBe('Apple Safari');
+    expect(getPlatform()?.browser).toBe('Apple Safari');
   });
 });
