@@ -422,7 +422,7 @@ jq.enqueue('task B'); // 순차 실행
    handler(); // Only the last call within 300ms will be executed
    ```
 
-2. **`throttle(func: Function, wait: number): Function`**
+2. **`throttle<T extends any[], R>(func: FuncType<T, R>, wait: number): (...args: T) => R | void`**
    Creates a throttled function that only invokes `func` at most once per `wait` milliseconds.
 
    **Usage Example:**
