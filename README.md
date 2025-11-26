@@ -103,25 +103,6 @@ download(blob, 'hello.txt', 'text/plain');
 
 ---
 
----
-
-### 📦 CDN Script Import
-
-```ts
-loadCDN('jquery', 'https://code.jquery.com/jquery-3.6.0.min.js');
-```
-
----
-
-### 📁 File Download
-
-```ts
-const blob = new Blob(['Hello world'], { type: 'text/plain' });
-download(blob, 'hello.txt', 'text/plain');
-```
-
----
-
 ### ⏳ Debounce & Throttle
 
 ```ts
