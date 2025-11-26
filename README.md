@@ -385,7 +385,7 @@ jq.enqueue('task B'); // 순차 실행
 
 ### Script Importing
 
-1. **`loadCDN(id: string, src: string, options?: ScriptAttribute): void`**
+1. **`loadCDN(id: string, src: string, options?: ScriptAttribute): Promise<void>`**
    Dynamically loads a script from a CDN with optional attributes.
 
    **Usage Example:**
