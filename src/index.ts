@@ -37,7 +37,7 @@ export const {
   cx,
 } = Format;
 export const { loadCDN } = Import;
-export const { debounce, throttle, getPlatfrom, JobQueue, FlushQueue, sleep } =
+export const { debounce, throttle, getPlatform, JobQueue, FlushQueue, sleep } =
   Api;
 export const { download } = Export;
 export const {
