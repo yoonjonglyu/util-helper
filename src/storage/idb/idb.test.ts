@@ -124,4 +124,15 @@ describe('isa-util/idb', () => {
     });
     expect(results).toEqual([]);
   });
+  test('db version upgrade should create new object store', async () => {
+    const NEW_STORE = 'new-store';
+    await idb.open(DB_NAME, {
+      version: 2,
+      schema: {
+        [NEW_STORE]: { keyPath: 'id' },
+      },
+    });
+    const db = await idb.open(DB_NAME);
+    expect(db.version).toBe(2);
+  });
 });
