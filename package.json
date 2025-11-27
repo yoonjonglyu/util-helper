@@ -1,6 +1,6 @@
 {
   "name": "isa-util",
-  "version": "1.0.24",
+  "version": "1.0.25",
   "description": "js,ts,utll,helper",
   "main": "dist/index.js",
   "module": "dist/index.js",
