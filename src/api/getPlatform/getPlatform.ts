@@ -4,7 +4,7 @@ import isMobile from '../../typecheck/isMobile/isMobile';
 
 export interface PlatformProps {
   os: ReturnType<typeof getOsName>;
-  broswer: ReturnType<typeof getBrowserName>;
+  browser: ReturnType<typeof getBrowserName>;
   mobile: boolean;
 }
 /**
@@ -13,18 +13,18 @@ export interface PlatformProps {
 function getPlatform(): PlatformProps | null {
   const platfrom: PlatformProps = {
     os: '',
-    broswer: '',
+    browser: '',
     mobile: false,
   };
   if (!isUndefined(navigator.userAgentData)) {
-    platfrom.broswer = getBrowserName(navigator.userAgent);
+    platfrom.browser = getBrowserName(navigator.userAgent);
     platfrom.os = navigator.userAgentData.platform;
     platfrom.mobile = navigator.userAgentData.mobile;
     return platfrom;
   } else if (!isUndefined(navigator.userAgent)) {
     platfrom.os = getOsName(navigator.userAgent);
     platfrom.mobile = isMobile(navigator.userAgent);
-    platfrom.broswer = getBrowserName(navigator.userAgent);
+    platfrom.browser = getBrowserName(navigator.userAgent);
     return platfrom;
   }
 
