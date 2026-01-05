@@ -1,32 +1,25 @@
+/**
+ * @jest-environment jsdom
+ */
 import getQuery from './getQuery';
 
 describe('getQuery', () => {
   beforeEach(() => {
-    global.window = Object.create({
-      location: {
-        ancestorOrigins: null,
-        assign: null,
-        hash: '',
-        host: 'www.google.com',
-        hostname: 'www.google.com',
-        href: 'https://www.google.com/search?q=google&oq=google&aqs=chrome..69i57j69i60l3.1669j0j7&sourceid=chrome&ie=UTF-8',
-        origin: 'https://www.google.com',
-        pathname: '/search',
-        port: '',
-        protocol: 'https:',
-        reload: null,
-        replace: null,
-        search:
-          '?q=google&oq=google&aqs=chrome..69i57j69i60l3.1669j0j7&sourceid=chrome&ie=UTF-8',
+    Object.defineProperty(window, 'location', {
+      writable: true,
+      value: {
+        ...window.location,
+        search: '?test=google&name=top',
       },
     });
   });
 
   test('getQuery return URLSearchParams', () => {
-    window.location.search = '?test=google&name=top';
-    expect(getQuery()).toEqual(new URLSearchParams(window.location.search));
-    expect(getQuery().get('test')).toBe('google');
-    expect(getQuery().get('name')).toBe('top');
-    expect(getQuery().has('asdasd')).toBeFalsy();
+    const query = getQuery();
+
+    expect(query).toBeInstanceOf(URLSearchParams);
+    expect(query?.get('test')).toBe('google');
+    expect(query?.get('name')).toBe('top');
+    expect(query?.has('asdasd')).toBe(false);
   });
 });

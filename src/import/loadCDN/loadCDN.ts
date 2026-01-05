@@ -1,3 +1,5 @@
+import isBrowser from "../../typecheck/isBrowser/isBrowser";
+
 type LoadCDNOptions = {
   async?: boolean;
   defer?: boolean;
@@ -15,6 +17,7 @@ type LoadCDNOptions = {
 };
 
 function loadCDN(id: string, src: string, options?: LoadCDNOptions): Promise<void> {
+  if(!isBrowser()) return Promise.resolve();
   if (!document.head.querySelector(`#${id}`)) {
     const CDNNode = document.createElement('script');
     CDNNode.setAttribute('id', id);

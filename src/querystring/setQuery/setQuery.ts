@@ -1,5 +1,7 @@
+import isBrowser from '../../typecheck/isBrowser/isBrowser';
+
 function setQuery(query: URLSearchParams) {
-  window.history.pushState({}, '', `?${query.toString()}`);
+  if (isBrowser()) window.history.pushState({}, '', `?${query.toString()}`);
 }
 
 export default setQuery;

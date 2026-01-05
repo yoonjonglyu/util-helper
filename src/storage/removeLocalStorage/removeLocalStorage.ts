@@ -1,6 +1,12 @@
+import isBrowser from '../../typecheck/isBrowser/isBrowser';
+
 function removeLocalStorage(key: string): void {
   if (!key) {
     console.warn('Key is required to remove an item from localStorage.');
+    return;
+  }
+  if (!isBrowser()) {
+    console.error('env not Broswer');
     return;
   }
 

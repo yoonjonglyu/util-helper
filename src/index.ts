@@ -24,6 +24,8 @@ export const {
   isDarkMode,
   isTouchDevice,
   isMobile,
+  isBrowser,
+  isNode,
 } = TypeCheck;
 export const { getQuery, setQuery } = QueryString;
 export const {

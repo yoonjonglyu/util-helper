@@ -1,6 +1,7 @@
 // @ts-nocheck
 import isUndefined from '../../typecheck/isUndefined/isUndefined';
 import isMobile from '../../typecheck/isMobile/isMobile';
+import isBrowser from '../../typecheck/isBrowser/isBrowser';
 
 export interface PlatformProps {
   os: ReturnType<typeof getOsName>;
@@ -11,6 +12,7 @@ export interface PlatformProps {
  * @todo 브라우저 호환성 이슈 및 표준 이슈로 추후 userAgent와 userAgentData의 규격에 따라 수정해야됨
  */
 function getPlatform(): PlatformProps | null {
+  if (!isBrowser()) return null;
   const platfrom: PlatformProps = {
     os: '',
     browser: '',
