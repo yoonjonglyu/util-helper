@@ -4,42 +4,8 @@
 import setLocalStorage from './setLocalStorage';
 
 describe('setLocalStorage', () => {
-  class LocalStorageMock implements Storage {
-    private store: Record<string, string>;
-
-    constructor() {
-      this.store = {};
-    }
-
-    get length() {
-      return Object.keys(this.store).length;
-    }
-
-    clear() {
-      this.store = {};
-    }
-
-    getItem(key: string): string | null {
-      return this.store[key] || null;
-    }
-
-    setItem(key: string, value: string): void {
-      this.store[key] = String(value);
-    }
-
-    removeItem(key: string): void {
-      delete this.store[key];
-    }
-
-    key(index: number): string | null {
-      const keys = Object.keys(this.store);
-      return keys[index] || null;
-    }
-  }
-
   beforeEach(() => {
-    global.localStorage = new LocalStorageMock();
-    global.localStorage.clear();
+    localStorage.clear();
   });
 
   it('should set a string value in localStorage', () => {
@@ -59,24 +25,25 @@ describe('setLocalStorage', () => {
 
     expect(localStorage.getItem(key)).toBe(JSON.stringify(value));
   });
+  it('logs error when localStorage.setItem throws', () => {
+    const spy = jest
+      .spyOn(Storage.prototype, 'setItem')
+      .mockImplementation(() => {
+        throw new Error('quota exceeded');
+      });
 
-  it('should handle errors when localStorage is not available', () => {
-    const key = 'testKey';
-    const value = 'testValue';
-    const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation();
+    const consoleErrorSpy = jest
+      .spyOn(console, 'error')
+      .mockImplementation(() => {});
 
-    Object.defineProperty(window, 'localStorage', {
-      value: null,
-      writable: true,
-    });
-
-    setLocalStorage(key, value);
+    setLocalStorage('test', 'value');
 
     expect(consoleErrorSpy).toHaveBeenCalledWith(
       'Error setting localStorage item:',
       expect.any(Error),
     );
 
+    spy.mockRestore();
     consoleErrorSpy.mockRestore();
   });
 
