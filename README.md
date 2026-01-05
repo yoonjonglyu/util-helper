@@ -315,7 +315,7 @@ jq.enqueue('task B'); // 순차 실행
 
 ### Query String Utilities
 
-1. **`getQuery(): URLSearchParams`**
+1. **`getQuery(): URLSearchParams | null`**
    Retrieves the current URL query parameters as a `URLSearchParams` object.
 
    **Usage Example:**
@@ -589,6 +589,10 @@ console.log(encryptedData);
 
 3. **`isTouchDevice(): boolean`**
    Checks if the current device supports touch interactions.
+4. **`isBroswer(): boolean`**
+   Checks if the env Broswer.
+5. **`isNode(): boolean`**
+   Checks if the env Node.
 
 ### Storage Utilities
 
@@ -601,7 +605,7 @@ console.log(encryptedData);
    setLocalStorage('user', { name: 'Alice' });
    ```
 
-2. **`getLocalStorage(key: string): any`**  
+2. **`getLocalStorage<T>(key: string): T | null`**  
    Retrieves a value from `localStorage`.
 
    **Usage Example:**
