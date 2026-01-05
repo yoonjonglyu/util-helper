@@ -13,6 +13,7 @@ import isToday from './isToday/isToday';
 import isDarkMode from './isDarkMode/isDarkMode';
 import isTouchDevice from './isTouchDevice/isTouchDevice';
 import isMobile from './isMobile/isMobile';
+import isBrowser from './isBrowser/isBrowser';
 
 const TypeCheck = Object.freeze({
   isFunction,
@@ -30,6 +31,7 @@ const TypeCheck = Object.freeze({
   isDarkMode,
   isTouchDevice,
   isMobile,
+  isBrowser,
 });
 
 export default TypeCheck;
