@@ -2,6 +2,20 @@ const getCrypto = (): Crypto => {
   if (typeof globalThis !== 'undefined' && globalThis.crypto) {
     return globalThis.crypto;
   }
+  if (typeof window !== 'undefined' && window.crypto) {
+    return window.crypto;
+  }
+  if (typeof process !== 'undefined' && process.versions?.node) {
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
+      const nodeCrypto = require('crypto');
+      if (nodeCrypto?.webcrypto) {
+        return nodeCrypto.webcrypto as unknown as Crypto;
+      }
+    } catch {
+      // ignore
+    }
+  }
   throw new Error('Web Crypto API is not available in the current environment.');
 };
 

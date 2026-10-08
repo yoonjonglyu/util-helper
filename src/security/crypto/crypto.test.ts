@@ -1,4 +1,18 @@
 // cryptoUtils.test.ts
+// Ensure WebCrypto is available in Node 18 Jest VM environments
+if (typeof globalThis.crypto === 'undefined' && typeof process !== 'undefined') {
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const { webcrypto } = require('crypto');
+    if (webcrypto) {
+      // @ts-ignore
+      globalThis.crypto = webcrypto;
+    }
+  } catch {
+    // ignore
+  }
+}
+
 import {
   encryptData,
   decryptData,

@@ -192,7 +192,8 @@ util-helper/
   - `options` 속성 주입 시 `dataset` 및 boolean 속성(`async`, `defer`, `noModule`)을 표준 스펙에 맞게 안전하게 바인딩.
 
 ### 7.2 런타임 버그 및 호환성 개선
-- **SSR/Node 환경 크래시 방지**:
+- **SSR/Node 환경 크래시 방지 및 호환성 강화**:
+  - `src/security/crypto/crypto.ts`: Node.js 18.x의 Jest VM 샌드박스 환경에서 `globalThis.crypto`가 노출되지 않아 발생하는 `Web Crypto API is not available` 에러를 방지하기 위해 Node 환경(`process.versions?.node`) 감지 시 `require('crypto').webcrypto`로 안전하게 폴백하도록 개선.
   - `src/typecheck/isMobile/isMobile.ts`: 기본 매개변수 `navigator.userAgent` 참조 시 Node/SSR 환경에서 발생하던 `ReferenceError: navigator is not defined` 예외 방어.
   - `src/typecheck/isTouchDevice/isTouchDevice.ts`: 잘못된 조건식 `!isBrowser` (함수 참조)를 `!isBrowser()` (함수 호출)로 수정하여 Node 환경에서 `window` 참조 크래시 방지.
 - **DOM 및 스토리지 예외 방어**:
