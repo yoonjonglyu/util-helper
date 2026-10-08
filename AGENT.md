@@ -259,3 +259,13 @@ util-helper/
 14. **`src/format/escapeHtml` & `unescapeHtml`**: HTML 특수문자(`&`, `<`, `>`, `"`, `'`)를 엔티티로 변환하여 XSS를 방어하고 복원하는 유틸리티.
 15. **`src/dom/isInViewport`**: 뷰포트 내 요소 노출 여부(부분 노출 / 전체 노출 `fullyInView`, `offset` 마진)를 판별하는 SSR 안전 DOM 유틸리티.
 16. **`src/dom/lockScroll`**: 모달 다이얼로그나 드로어 오픈 시 배경 스크롤을 `overflow: hidden`으로 잠그고 닫힐 때 이전 스타일을 복원하는 SSR 안전 유틸리티.
+
+### 7.8 isa-util@1.1.0 공식 릴리즈 및 npm 배포 완료
+- **버전**: `1.1.0` (npm 레지스트리 배포 완료)
+- **주요 릴리즈 내용**:
+  - 총 71개 Test Suites, 271개 Tests (100% 통과).
+  - 신규 도메인 `src/array`, `src/object` 신설 및 `package.json` 서브패스(`isa-util/array`, `isa-util/object`) 등록.
+  - 총 28개 이상의 신규 유틸리티 함수(Retry, Timeout, Concurrency, Viewport, ScrollLock, DeepClone, DeepMerge, Mask, FormatBytes 등) 추가.
+  - 패키지 내장 AI 에이전트 스킬(`skills/isa-util/SKILL.md`) 및 워크스페이스 스킬(`.agents/skills/isa-util/SKILL.md`) 동시 패키징.
+  - `README.md` 전면 개편 및 서브패스/실전 예제/AI 스킬 가이드 동기화.
+
