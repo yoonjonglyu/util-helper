@@ -1,12 +1,95 @@
 {
   "name": "isa-util",
-  "version": "1.0.26",
+  "version": "1.1.1",
   "description": "js,ts,utll,helper",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "skills",
+    "README.md",
+    "LICENSE"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./api": {
+      "types": "./dist/api/index.d.ts",
+      "import": "./dist/api/index.js",
+      "require": "./dist/api/index.js",
+      "default": "./dist/api/index.js"
+    },
+    "./dom": {
+      "types": "./dist/dom/index.d.ts",
+      "import": "./dist/dom/index.js",
+      "require": "./dist/dom/index.js",
+      "default": "./dist/dom/index.js"
+    },
+    "./export": {
+      "types": "./dist/export/index.d.ts",
+      "import": "./dist/export/index.js",
+      "require": "./dist/export/index.js",
+      "default": "./dist/export/index.js"
+    },
+    "./format": {
+      "types": "./dist/format/index.d.ts",
+      "import": "./dist/format/index.js",
+      "require": "./dist/format/index.js",
+      "default": "./dist/format/index.js"
+    },
+    "./import": {
+      "types": "./dist/import/index.d.ts",
+      "import": "./dist/import/index.js",
+      "require": "./dist/import/index.js",
+      "default": "./dist/import/index.js"
+    },
+    "./querystring": {
+      "types": "./dist/querystring/index.d.ts",
+      "import": "./dist/querystring/index.js",
+      "require": "./dist/querystring/index.js",
+      "default": "./dist/querystring/index.js"
+    },
+    "./security": {
+      "types": "./dist/security/index.d.ts",
+      "import": "./dist/security/index.js",
+      "require": "./dist/security/index.js",
+      "default": "./dist/security/index.js"
+    },
+    "./storage": {
+      "types": "./dist/storage/index.d.ts",
+      "import": "./dist/storage/index.js",
+      "require": "./dist/storage/index.js",
+      "default": "./dist/storage/index.js"
+    },
+    "./typecheck": {
+      "types": "./dist/typecheck/index.d.ts",
+      "import": "./dist/typecheck/index.js",
+      "require": "./dist/typecheck/index.js",
+      "default": "./dist/typecheck/index.js"
+    },
+    "./array": {
+      "types": "./dist/array/index.d.ts",
+      "import": "./dist/array/index.js",
+      "require": "./dist/array/index.js",
+      "default": "./dist/array/index.js"
+    },
+    "./object": {
+      "types": "./dist/object/index.d.ts",
+      "import": "./dist/object/index.js",
+      "require": "./dist/object/index.js",
+      "default": "./dist/object/index.js"
+    },
+    "./package.json": "./package.json"
+  },
   "scripts": {
-    "test": "jest --watchAll",
+    "test": "jest --watchAll=false",
+    "test:watch": "jest --watchAll",
     "publish:npm": "rimraf dist &&  babel src -d dist --extensions \".ts\" --ignore **/*.test.ts",
     "publish:type": "tsc --declaration --allowJs --emitDeclarationOnly --outDir dist",
     "build": "yarn publish:npm && yarn publish:type"

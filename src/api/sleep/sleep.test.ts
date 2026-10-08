@@ -23,4 +23,11 @@ describe('sleep', () => {
   it('should not throw for negative values', async () => {
     await expect(sleep(-100)).resolves.toBeUndefined();
   });
+
+  it('should reject when aborted via AbortSignal', async () => {
+    const controller = new AbortController();
+    const sleepPromise = sleep(1000, controller.signal);
+    controller.abort();
+    await expect(sleepPromise).rejects.toThrow();
+  });
 });

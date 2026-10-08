@@ -42,4 +42,10 @@ describe('removeClass', () => {
     expect(element.classList.contains('test-class')).toBe(true);
     expect(element.classList.contains('another-class')).toBe(false);
   });
+
+  it('should safely do nothing when element or className is null/undefined', () => {
+    expect(() => removeClass(null as unknown as HTMLElement, 'test-class')).not.toThrow();
+    expect(() => removeClass(undefined as unknown as HTMLElement, 'test-class')).not.toThrow();
+    expect(() => removeClass(element, '')).not.toThrow();
+  });
 });

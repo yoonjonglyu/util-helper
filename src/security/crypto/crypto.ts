@@ -1,6 +1,28 @@
+const getCrypto = (): Crypto => {
+  if (typeof globalThis !== 'undefined' && globalThis.crypto) {
+    return globalThis.crypto;
+  }
+  if (typeof window !== 'undefined' && window.crypto) {
+    return window.crypto;
+  }
+  if (typeof process !== 'undefined' && process.versions?.node) {
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
+      const nodeCrypto = require('crypto');
+      if (nodeCrypto?.webcrypto) {
+        return nodeCrypto.webcrypto as unknown as Crypto;
+      }
+    } catch {
+      // ignore
+    }
+  }
+  throw new Error('Web Crypto API is not available in the current environment.');
+};
+
 const generateKey = async (password: string, salt: string) => {
+  const cryptoObj = getCrypto();
   const encoder = new TextEncoder();
-  const keyMaterial = await crypto.subtle.importKey(
+  const keyMaterial = await cryptoObj.subtle.importKey(
     'raw',
     encoder.encode(password),
     { name: 'PBKDF2' },
@@ -8,7 +30,7 @@ const generateKey = async (password: string, salt: string) => {
     ['deriveKey'],
   );
 
-  return crypto.subtle.deriveKey(
+  return cryptoObj.subtle.deriveKey(
     {
       name: 'PBKDF2',
       salt: encoder.encode(salt),
@@ -30,11 +52,12 @@ export const encryptData = async (
   password: string,
   salt: string,
 ) => {
+  const cryptoObj = getCrypto();
   const key = await generateKey(password, salt);
-  const iv = crypto.getRandomValues(new Uint8Array(12));
+  const iv = cryptoObj.getRandomValues(new Uint8Array(12));
   const encoder = new TextEncoder();
 
-  const encrypted = await crypto.subtle.encrypt(
+  const encrypted = await cryptoObj.subtle.encrypt(
     { name: 'AES-GCM', iv },
     key,
     encoder.encode(data),
@@ -52,10 +75,11 @@ export const decryptData = async (
   password: string,
   salt: string,
 ) => {
+  const cryptoObj = getCrypto();
   const key = await generateKey(password, salt);
   const decoder = new TextDecoder();
 
-  const decrypted = await crypto.subtle.decrypt(
+  const decrypted = await cryptoObj.subtle.decrypt(
     { name: 'AES-GCM', iv: new Uint8Array(iv) },
     key,
     new Uint8Array(encryptedData),
@@ -64,23 +88,40 @@ export const decryptData = async (
   return decoder.decode(decrypted);
 };
 
-export const generateSalt = () => {
-  const array = new Uint8Array(16);
-  crypto.getRandomValues(array);
+export const generateSalt = (byteLength: number = 16): string => {
+  const cryptoObj = getCrypto();
+  const array = new Uint8Array(byteLength);
+  cryptoObj.getRandomValues(array);
   return Array.from(array)
-    .map((byte) => String.fromCharCode(byte))
+    .map((byte) => byte.toString(16).padStart(2, '0'))
     .join('');
 };
-export const generatePassword = (length: number) => {
+
+export const generatePassword = (length: number): string => {
+  if (length <= 0) return '';
+  const cryptoObj = getCrypto();
   const charset =
     'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  const charsetLen = charset.length;
+  // Use crypto.getRandomValues to eliminate Math.random security vulnerability (CWE-338)
+  const randomBytes = new Uint8Array(length);
+  cryptoObj.getRandomValues(randomBytes);
+
   let password = '';
+  // Avoid modulo bias by rejection sampling or uniform mapping
+  const maxMultiple = Math.floor(256 / charsetLen) * charsetLen;
   for (let i = 0; i < length; i++) {
-    const randomIndex = Math.floor(Math.random() * charset.length);
-    password += charset[randomIndex];
+    let byte = randomBytes[i];
+    while (byte >= maxMultiple) {
+      const extraByte = new Uint8Array(1);
+      cryptoObj.getRandomValues(extraByte);
+      byte = extraByte[0];
+    }
+    password += charset[byte % charsetLen];
   }
   return password;
 };
+
 export const generatePasswordWithSalt = (length: number) => {
   const password = generatePassword(length);
   const salt = generateSalt();

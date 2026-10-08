@@ -60,8 +60,35 @@ describe('JobQueue', () => {
     jobQueue.enqueue(2);
     jobQueue.enqueue(3);
 
-    await new Promise((resolve) => setTimeout(resolve, 200)); // Wait for processing
+    await new Promise<void>((resolve, reject) => {
+      const timer = setTimeout(() => reject(new Error('Timed out waiting for jobs to process')), 1000);
+      const interval = setInterval(() => {
+        if (processedJobs.length === 3) {
+          clearTimeout(timer);
+          clearInterval(interval);
+          resolve();
+        }
+      }, 10);
+    });
 
     expect(processedJobs).toEqual([1, 2, 3]);
+  });
+
+  it('should support size and clear operations', () => {
+    let resolver: () => void;
+    const processJob = jest.fn(() => new Promise<void>((r) => { resolver = r; }));
+    const jobQueue = new JobQueue(processJob);
+
+    jobQueue.enqueue(1);
+    jobQueue.enqueue(2);
+    jobQueue.enqueue(3);
+
+    expect(jobQueue.isProcessing()).toBe(true);
+    expect(jobQueue.size()).toBe(2);
+
+    jobQueue.clear();
+    expect(jobQueue.size()).toBe(0);
+
+    resolver!();
   });
 });

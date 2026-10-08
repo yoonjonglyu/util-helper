@@ -80,32 +80,34 @@ export async function transaction<T>(
   });
 }
 
+function promisifyRequest<T = any>(req: IDBRequest<T>): Promise<T> {
+  return new Promise((resolve, reject) => {
+    req.onsuccess = () => resolve(req.result);
+    req.onerror = () => reject(req.error);
+  });
+}
+
 export async function get<T = any>(
   dbName: string,
   store: string,
   key: IDBValidKey,
 ): Promise<T | undefined> {
-  return transaction(dbName, store, 'readonly', (storeObj) => {
-    return new Promise((resolve, reject) => {
-      const req = storeObj.get(key);
-      req.onsuccess = () => resolve(req.result);
-      req.onerror = () => reject(req.error);
-    });
-  });
+  return transaction(dbName, store, 'readonly', (storeObj) =>
+    promisifyRequest<T>(storeObj.get(key)),
+  );
 }
 
 export async function put<T = any>(
   dbName: string,
   store: string,
   value: T,
+  key?: IDBValidKey,
 ): Promise<IDBValidKey> {
-  return transaction(dbName, store, 'readwrite', (storeObj) => {
-    return new Promise((resolve, reject) => {
-      const req = storeObj.put(value);
-      req.onsuccess = () => resolve(req.result);
-      req.onerror = () => reject(req.error);
-    });
-  });
+  return transaction(dbName, store, 'readwrite', (storeObj) =>
+    promisifyRequest<IDBValidKey>(
+      key !== undefined ? storeObj.put(value, key) : storeObj.put(value),
+    ),
+  );
 }
 
 export async function del(
@@ -113,22 +115,15 @@ export async function del(
   store: string,
   key: IDBValidKey,
 ): Promise<void> {
-  return transaction(dbName, store, 'readwrite', (storeObj) => {
-    return new Promise((resolve, reject) => {
-      const req = storeObj.delete(key);
-      req.onsuccess = () => resolve();
-      req.onerror = () => reject(req.error);
-    });
-  });
+  return transaction(dbName, store, 'readwrite', (storeObj) =>
+    promisifyRequest(storeObj.delete(key)),
+  );
 }
+
 export async function clear(dbName: string, store: string): Promise<void> {
-  return transaction(dbName, store, 'readwrite', (storeObj) => {
-    return new Promise((resolve, reject) => {
-      const req = storeObj.clear();
-      req.onsuccess = () => resolve();
-      req.onerror = () => reject(req.error);
-    });
-  });
+  return transaction(dbName, store, 'readwrite', (storeObj) =>
+    promisifyRequest(storeObj.clear()),
+  );
 }
 
 export async function deleteDB(name: string): Promise<void> {

@@ -1,4 +1,18 @@
 // cryptoUtils.test.ts
+// Ensure WebCrypto is available in Node 18 Jest VM environments
+if (typeof globalThis.crypto === 'undefined' && typeof process !== 'undefined') {
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const { webcrypto } = require('crypto');
+    if (webcrypto) {
+      // @ts-ignore
+      globalThis.crypto = webcrypto;
+    }
+  } catch {
+    // ignore
+  }
+}
+
 import {
   encryptData,
   decryptData,
@@ -31,8 +45,11 @@ describe('Crypto Utils', () => {
     const password = generatePassword(16);
 
     expect(typeof salt).toBe('string');
+    expect(salt).toMatch(/^[0-9a-f]{32}$/); // 16 bytes = 32 hex chars
     expect(typeof password).toBe('string');
     expect(password.length).toBe(16);
+    expect(generatePassword(0)).toBe('');
+    expect(generatePassword(32).length).toBe(32);
   });
 
   it('should generate password+salt and encrypt data correctly', async () => {

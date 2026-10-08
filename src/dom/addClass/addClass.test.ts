@@ -38,4 +38,17 @@ describe('addClass', () => {
     expect(() => addClass(element, 'new-class')).not.toThrow();
     expect(element.classList.contains('new-class')).toBe(true);
   });
+
+  it('should handle whitespace-separated multiple classes safely', () => {
+    addClass(element, 'btn btn-primary active');
+    expect(element.classList.contains('btn')).toBe(true);
+    expect(element.classList.contains('btn-primary')).toBe(true);
+    expect(element.classList.contains('active')).toBe(true);
+  });
+
+  it('should handle multiple class arguments', () => {
+    addClass(element, 'foo', 'bar');
+    expect(element.classList.contains('foo')).toBe(true);
+    expect(element.classList.contains('bar')).toBe(true);
+  });
 });

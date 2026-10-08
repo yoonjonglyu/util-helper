@@ -18,9 +18,13 @@ function debounce<T extends any[], R>(
     debounceId = null;
   };
   const start = () => {
+    if (debounceId !== null) {
+      clearTimeout(debounceId);
+      debounceId = null;
+    }
     lastCallTime = Date.now() + wait;
     debounceId = setTimeout(() => {
-      if (Date.now() >= lastCallTime) invokeFunc();
+      invokeFunc();
     }, wait);
   };
   const cancel = () => {
