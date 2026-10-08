@@ -88,4 +88,14 @@ describe('timeAgo', () => {
     const past = new Date(now.getTime() - 90 * 1000); // 90 seconds ago
     expect(timeAgo(past, 'ko')).toBe('1 분 전');
   });
+
+  it('should handle future dates gracefully without negative numbers', () => {
+    const future = new Date(Date.now() + 10 * 1000);
+    expect(timeAgo(future, 'en')).toBe('0 seconds ago');
+    expect(timeAgo(future, 'ko')).toBe('0 초 전');
+  });
+
+  it('should return empty string for invalid date', () => {
+    expect(timeAgo(new Date('invalid-date'))).toBe('');
+  });
 });

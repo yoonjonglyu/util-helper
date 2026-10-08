@@ -31,8 +31,11 @@ describe('Crypto Utils', () => {
     const password = generatePassword(16);
 
     expect(typeof salt).toBe('string');
+    expect(salt).toMatch(/^[0-9a-f]{32}$/); // 16 bytes = 32 hex chars
     expect(typeof password).toBe('string');
     expect(password.length).toBe(16);
+    expect(generatePassword(0)).toBe('');
+    expect(generatePassword(32).length).toBe(32);
   });
 
   it('should generate password+salt and encrypt data correctly', async () => {

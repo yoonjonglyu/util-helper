@@ -15,15 +15,29 @@ describe('download', () => {
     error.mockReset();
   });
 
-  test('dowload args right', () => {
+  test('dowload args right with Blob', () => {
     download(data, 'test', 'txt');
     expect(createObjectURL).toBeCalled();
     expect(revokeObjectURL).toBeCalled();
   });
-  test('download args wrong', () => {
+
+  test('download args right with string', () => {
+    download('plain text content', 'test', 'txt');
+    expect(createObjectURL).toBeCalled();
+    expect(revokeObjectURL).toBeCalled();
+  });
+
+  test('download args right with ArrayBuffer', () => {
+    const buffer = new Uint8Array([1, 2, 3]).buffer;
+    download(buffer, 'test', 'bin');
+    expect(createObjectURL).toBeCalled();
+    expect(revokeObjectURL).toBeCalled();
+  });
+
+  test('download args wrong when data is null or empty name', () => {
     // @ts-ignore
-    download('data', 'test', 'asd');
-    expect(createObjectURL).not.toBeCalled()
+    download(null, 'test', 'asd');
+    expect(createObjectURL).not.toBeCalled();
     expect(revokeObjectURL).not.toBeCalled();
     expect(error).toBeCalled();
   });

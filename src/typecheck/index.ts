@@ -15,6 +15,9 @@ import isTouchDevice from './isTouchDevice/isTouchDevice';
 import isMobile from './isMobile/isMobile';
 import isBrowser from './isBrowser/isBrowser';
 import isNode from './isNode/isNode';
+import isEmpty from './isEmpty/isEmpty';
+import isEmail from './isEmail/isEmail';
+import isUrl from './isUrl/isUrl';
 
 const TypeCheck = Object.freeze({
   isFunction,
@@ -34,6 +37,9 @@ const TypeCheck = Object.freeze({
   isMobile,
   isBrowser,
   isNode,
+  isEmpty,
+  isEmail,
+  isUrl,
 });
 
 export default TypeCheck;

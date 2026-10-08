@@ -23,9 +23,13 @@ type Locale = keyof typeof translations;
 
 function timeAgo(date: Date | string | number, locale: Locale = 'en'): string {
   const now = new Date();
-
   const past = new Date(date);
-  const diffInSeconds = Math.floor((now.getTime() - past.getTime()) / 1000);
+  if (isNaN(past.getTime())) {
+    return '';
+  }
+
+  const rawDiff = Math.floor((now.getTime() - past.getTime()) / 1000);
+  const diffInSeconds = Math.max(0, rawDiff);
 
   const t = isUndefined(translations[locale])
     ? translations.en

@@ -9,6 +9,18 @@ class JobQueue<T> {
     this.processNext();
   }
 
+  size(): number {
+    return this.queue.length;
+  }
+
+  clear(): void {
+    this.queue = [];
+  }
+
+  isProcessing(): boolean {
+    return this.processing;
+  }
+
   private async processNext(): Promise<void> {
     if (this.processing || this.queue.length === 0) {
       return;

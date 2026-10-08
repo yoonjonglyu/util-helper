@@ -7,6 +7,8 @@ import Export from './export';
 import Security from './security';
 import Storage from './storage';
 import Dom from './dom';
+import * as Arr from './array';
+import * as Obj from './object';
 
 export const {
   isArray,
@@ -26,8 +28,13 @@ export const {
   isMobile,
   isBrowser,
   isNode,
+  isEmpty,
+  isEmail,
+  isUrl,
 } = TypeCheck;
+
 export const { getQuery, setQuery } = QueryString;
+
 export const {
   addComma,
   formatDate,
@@ -35,13 +42,33 @@ export const {
   camelCase,
   pascalCase,
   snakeCase,
+  kebabCase,
   formatClass,
   cx,
+  formatBytes,
+  mask,
+  truncate,
+  escapeHtml,
+  unescapeHtml,
 } = Format;
+
 export const { loadCDN } = Import;
-export const { debounce, throttle, getPlatform, JobQueue, FlushQueue, sleep } =
-  Api;
+
+export const {
+  debounce,
+  throttle,
+  getPlatform,
+  JobQueue,
+  FlushQueue,
+  sleep,
+  retry,
+  timeout,
+  pMap,
+  once,
+} = Api;
+
 export const { download } = Export;
+
 export const {
   encryptData,
   decryptData,
@@ -52,9 +79,47 @@ export const {
   decryptPasswordWithSalt,
   decryptPasswordWithSaltAndEncrypt,
 } = Security.cryptos;
-export const { setLocalStorage, getLocalStorage, removeLocalStorage, idb } =
-  Storage;
-export const { hasClass, addClass, removeClass, toggleClass } = Dom;
+
+export const {
+  setLocalStorage,
+  getLocalStorage,
+  removeLocalStorage,
+  idb,
+  cookie,
+  getCookie,
+  setCookie,
+  removeCookie,
+  session,
+  getSessionStorage,
+  setSessionStorage,
+  removeSessionStorage,
+} = Storage;
+
+export const {
+  hasClass,
+  addClass,
+  removeClass,
+  toggleClass,
+  copyToClipboard,
+  scrollToTop,
+  isInViewport,
+  lockScroll,
+} = Dom;
+
+export const {
+  chunk,
+  unique,
+  groupBy,
+  shuffle,
+  range,
+} = Arr;
+
+export const {
+  pick,
+  omit,
+  deepClone,
+  deepMerge,
+} = Obj;
 
 const UtilHelper = Object.freeze({
   TypeCheck,
@@ -66,6 +131,8 @@ const UtilHelper = Object.freeze({
   Security,
   Storage,
   Dom,
+  Array: Arr,
+  Object: Obj,
 });
 
 export default UtilHelper;
