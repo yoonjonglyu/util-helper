@@ -1,6 +1,6 @@
 # isa-util
 
-[![npm version](https://img.shields.io/badge/version-1.1.0-blue.svg)](https://www.npmjs.com/package/isa-util)
+[![npm version](https://img.shields.io/badge/version-1.1.1-blue.svg)](https://www.npmjs.com/package/isa-util)
 [![license](https://img.shields.io/badge/license-MIT-green.svg)](./LICENSE)
 [![dependencies](https://img.shields.io/badge/dependencies-0-brightgreen.svg)]()
 [![tree-shakable](https://img.shields.io/badge/tree--shakable-yes-brightgreen.svg)]()
